@@ -16,9 +16,11 @@ import java.time.LocalDate;
 @Table(name = "appointments")
 public class Appointment {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
 
     @Column
     private LocalDate date;
