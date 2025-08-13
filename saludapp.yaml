@@ -1,0 +1,1293 @@
+openapi: 3.0.1
+info:
+  title: SaludApp API
+  description: API para gestionar citas, pacientes, médicos, medicamentos y prescripciones.
+  version: 1.0.0
+servers:
+  - url: "http://localhost:8080"
+tags:
+  - name: appointments
+    description: Operaciones con citas
+  - name: doctors
+    description: Operaciones con médicos
+  - name: patients
+    description: Operaciones con pacientes
+  - name: medicines
+    description: Operaciones con medicamentos
+  - name: prescriptions
+    description: Operaciones con prescripciones
+
+paths:
+
+  ############################
+  # Appointments (CRUD)
+  ############################
+  /appointments:
+    get:
+      tags: [appointments]
+      summary: Listado de citas
+      description: Devuelve citas con filtros opcionales por fecha y confirmación.
+      parameters:
+        - name: date
+          in: query
+          required: false
+          description: Fecha de la cita (yyyy-MM-dd)
+          schema: { type: string, format: date }
+          examples:
+            hoy: { value: "2025-08-13" }
+            proxSemana: { value: "2025-08-20" }
+        - name: confirmed
+          in: query
+          required: false
+          description: Indicador de cita confirmada
+          schema: { type: boolean }
+          examples:
+            soloConfirmadas: { value: true }
+            soloPendientes: { value: false }
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/AppointmentOutDto" }
+              examples:
+                listaConDatos: { $ref: "#/components/examples/AppointmentList_example1" }
+                listaVacia: { $ref: "#/components/examples/AppointmentList_example2" }
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+
+  /appointments/{appointmentId}:
+    get:
+      tags: [appointments]
+      summary: Detalle de una cita
+      parameters:
+        - name: appointmentId
+          in: path
+          required: true
+          description: Identificador de la cita
+          schema: { type: number, format: int64 }
+          examples:
+            id1: { value: 12 }
+            id2: { value: 33 }
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/AppointmentOutDto" }
+              examples:
+                ok1: { $ref: "#/components/examples/AppointmentOut_example1" }
+                ok2: { $ref: "#/components/examples/AppointmentOut_example2" }
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+    put:
+      tags: [appointments]
+      summary: Modificar una cita
+      parameters:
+        - name: appointmentId
+          in: path
+          required: true
+          description: Identificador de la cita
+          schema: { type: number, format: int64 }
+          examples:
+            id1: { value: 12 }
+            id2: { value: 33 }
+      requestBody:
+        required: true
+        description: Datos a modificar
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/AppointmentInDto" }
+            examples:
+              cambio1: { $ref: "#/components/examples/AppointmentIn_example1" }
+              cambio2: { $ref: "#/components/examples/AppointmentIn_example2" }
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/AppointmentOutDto" }
+              examples:
+                ok1: { $ref: "#/components/examples/AppointmentOut_example1" }
+                ok2: { $ref: "#/components/examples/AppointmentOut_example2" }
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+    delete:
+      tags: [appointments]
+      summary: Eliminar una cita
+      parameters:
+        - name: appointmentId
+          in: path
+          required: true
+          description: Identificador de la cita
+          schema: { type: number, format: int64 }
+          examples:
+            id1: { value: 12 }
+            id2: { value: 33 }
+      responses:
+        "204":
+          description: No content
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+
+  /patients/{patientId}/doctors/{doctorId}/appointments:
+    post:
+      tags: [appointments, patients, doctors]
+      summary: Crear una cita
+      parameters:
+        - name: patientId
+          in: path
+          required: true
+          description: Identificador del paciente
+          schema: { type: number, format: int64 }
+          examples:
+            p1: { value: 3 }
+            p2: { value: 8 }
+        - name: doctorId
+          in: path
+          required: true
+          description: Identificador del médico
+          schema: { type: number, format: int64 }
+          examples:
+            d1: { value: 5 }
+            d2: { value: 2 }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/AppointmentRegistrationDto" }
+            examples:
+              alta1: { $ref: "#/components/examples/AppointmentRegistration_example1" }
+              alta2: { $ref: "#/components/examples/AppointmentRegistration_example2" }
+      responses:
+        "201":
+          description: Creado
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/AppointmentOutDto" }
+              examples:
+                ok1: { $ref: "#/components/examples/AppointmentOut_example1" }
+                ok2: { $ref: "#/components/examples/AppointmentOut_example2" }
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+
+  ############################
+  # Appointments (JPQL queries)
+  ############################
+  /appointments/jpql/by-patient-email:
+    get:
+      tags: [appointments]
+      summary: Buscar citas por email de paciente (JPQL)
+      parameters:
+        - name: email
+          in: query
+          required: true
+          description: Email del paciente
+          schema: { type: string }
+          examples:
+            e1: { value: "juan@correo.com" }
+            e2: { value: "carlosj@gmail.com" }
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/AppointmentOutDto" }
+              examples:
+                lista1: { $ref: "#/components/examples/AppointmentList_example1" }
+                lista2: { $ref: "#/components/examples/AppointmentList_example2" }
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+
+  /appointments/jpql/by-doctor-name:
+    get:
+      tags: [appointments]
+      summary: Buscar citas por nombre de médico (JPQL)
+      parameters:
+        - name: name
+          in: query
+          required: true
+          description: Nombre del médico
+          schema: { type: string }
+          examples:
+            n1: { value: "Laura" }
+            n2: { value: "Miguel" }
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/AppointmentOutDto" }
+              examples:
+                lista1: { $ref: "#/components/examples/AppointmentList_example1" }
+                lista2: { $ref: "#/components/examples/AppointmentList_example2" }
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+
+  /appointments/jpql/with-cost-greater-than:
+    get:
+      tags: [appointments]
+      summary: Buscar citas con coste mayor que (JPQL)
+      parameters:
+        - name: cost
+          in: query
+          required: true
+          description: Coste mínimo
+          schema: { type: number, format: float, minimum: 0 }
+          examples:
+            c1: { value: 25 }
+            c2: { value: 50 }
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/AppointmentOutDto" }
+              examples:
+                lista1: { $ref: "#/components/examples/AppointmentList_example1" }
+                lista2: { $ref: "#/components/examples/AppointmentList_example2" }
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+
+  ############################
+  # Appointments (Native SQL)
+  ############################
+  /appointments/native/by-patient-email:
+    get:
+      tags: [appointments]
+      summary: Buscar citas por email de paciente (SQL nativa)
+      parameters:
+        - name: email
+          in: query
+          required: true
+          description: Email del paciente
+          schema: { type: string }
+          examples:
+            e1: { value: "juan@correo.com" }
+            e2: { value: "carlosj@gmail.com" }
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/AppointmentOutDto" }
+              examples:
+                lista1: { $ref: "#/components/examples/AppointmentList_example1" }
+                lista2: { $ref: "#/components/examples/AppointmentList_example2" }
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+
+  /appointments/native/by-doctor-name:
+    get:
+      tags: [appointments]
+      summary: Buscar citas por nombre de médico (SQL nativa)
+      parameters:
+        - name: name
+          in: query
+          required: true
+          description: Nombre del médico
+          schema: { type: string }
+          examples:
+            n1: { value: "Laura" }
+            n2: { value: "Miguel" }
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/AppointmentOutDto" }
+              examples:
+                lista1: { $ref: "#/components/examples/AppointmentList_example1" }
+                lista2: { $ref: "#/components/examples/AppointmentList_example2" }
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+
+  /appointments/native/with-cost-greater-than:
+    get:
+      tags: [appointments]
+      summary: Buscar citas con coste mayor que (SQL nativa)
+      parameters:
+        - name: cost
+          in: query
+          required: true
+          description: Coste mínimo
+          schema: { type: number, format: float, minimum: 0 }
+          examples:
+            c1: { value: 25 }
+            c2: { value: 50 }
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/AppointmentOutDto" }
+              examples:
+                lista1: { $ref: "#/components/examples/AppointmentList_example1" }
+                lista2: { $ref: "#/components/examples/AppointmentList_example2" }
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+
+  ############################
+  # Doctors (CRUD)
+  ############################
+  /doctors:
+    get:
+      tags: [doctors]
+      summary: Listado de médicos
+      parameters:
+        - name: name
+          in: query
+          required: false
+          description: Nombre del médico
+          schema: { type: string }
+          examples:
+            n1: { value: "Laura" }
+            n2: { value: "Miguel" }
+        - name: specialty
+          in: query
+          required: false
+          description: Especialidad
+          schema: { type: string }
+          examples:
+            s1: { value: "Pediatría" }
+            s2: { value: "Traumatología" }
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/DoctorOutDto" }
+              examples:
+                lista1: { $ref: "#/components/examples/DoctorList_example1" }
+                lista2: { $ref: "#/components/examples/DoctorList_example2" }
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+    post:
+      tags: [doctors]
+      summary: Crear médico
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/DoctorRegistrationDto" }
+            examples:
+              alta1: { $ref: "#/components/examples/DoctorRegistration_example1" }
+              alta2: { $ref: "#/components/examples/DoctorRegistration_example2" }
+      responses:
+        "201":
+          description: Creado
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/DoctorOutDto" }
+              examples:
+                ok1: { $ref: "#/components/examples/DoctorOut_example1" }
+                ok2: { $ref: "#/components/examples/DoctorOut_example2" }
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+
+  /doctors/{doctorId}:
+    get:
+      tags: [doctors]
+      summary: Detalle de un médico
+      parameters:
+        - name: doctorId
+          in: path
+          required: true
+          description: Identificador del médico
+          schema: { type: number, format: int64 }
+          examples:
+            id1: { value: 7 }
+            id2: { value: 9 }
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/DoctorOutDto" }
+              examples:
+                ok1: { $ref: "#/components/examples/DoctorOut_example1" }
+                ok2: { $ref: "#/components/examples/DoctorOut_example2" }
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+    put:
+      tags: [doctors]
+      summary: Modificar médico
+      parameters:
+        - name: doctorId
+          in: path
+          required: true
+          description: Identificador del médico
+          schema: { type: number, format: int64 }
+          examples:
+            id1: { value: 7 }
+            id2: { value: 9 }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/DoctorInDto" }
+            examples:
+              cambio1: { $ref: "#/components/examples/DoctorIn_example1" }
+              cambio2: { $ref: "#/components/examples/DoctorIn_example2" }
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/DoctorOutDto" }
+              examples:
+                ok1: { $ref: "#/components/examples/DoctorOut_example1" }
+                ok2: { $ref: "#/components/examples/DoctorOut_example2" }
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+    delete:
+      tags: [doctors]
+      summary: Eliminar médico
+      parameters:
+        - name: doctorId
+          in: path
+          required: true
+          description: Identificador del médico
+          schema: { type: number, format: int64 }
+          examples:
+            id1: { value: 7 }
+            id2: { value: 9 }
+      responses:
+        "204":
+          description: No content
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+
+  ############################
+  # Patients (CRUD)
+  ############################
+  /patients:
+    get:
+      tags: [patients]
+      summary: Listado de pacientes
+      parameters:
+        - name: name
+          in: query
+          required: false
+          description: Nombre del paciente
+          schema: { type: string }
+          examples:
+            n1: { value: "Carlos" }
+            n2: { value: "Laura" }
+        - name: surname
+          in: query
+          required: false
+          description: Apellidos del paciente
+          schema: { type: string }
+          examples:
+            s1: { value: "Jiménez" }
+            s2: { value: "Núñez" }
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/PatientOutDto" }
+              examples:
+                lista1: { $ref: "#/components/examples/PatientList_example1" }
+                lista2: { $ref: "#/components/examples/PatientList_example2" }
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+    post:
+      tags: [patients]
+      summary: Crear paciente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/PatientRegistrationDto" }
+            examples:
+              alta1: { $ref: "#/components/examples/PatientRegistration_example1" }
+              alta2: { $ref: "#/components/examples/PatientRegistration_example2" }
+      responses:
+        "201":
+          description: Creado
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/PatientOutDto" }
+              examples:
+                ok1: { $ref: "#/components/examples/PatientOut_example1" }
+                ok2: { $ref: "#/components/examples/PatientOut_example2" }
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+
+  /patients/{patientId}:
+    get:
+      tags: [patients]
+      summary: Detalle de paciente
+      parameters:
+        - name: patientId
+          in: path
+          required: true
+          description: Identificador del paciente
+          schema: { type: number, format: int64 }
+          examples:
+            id1: { value: 2 }
+            id2: { value: 4 }
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/PatientOutDto" }
+              examples:
+                ok1: { $ref: "#/components/examples/PatientOut_example1" }
+                ok2: { $ref: "#/components/examples/PatientOut_example2" }
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+    put:
+      tags: [patients]
+      summary: Modificar paciente
+      parameters:
+        - name: patientId
+          in: path
+          required: true
+          description: Identificador del paciente
+          schema: { type: number, format: int64 }
+          examples:
+            id1: { value: 2 }
+            id2: { value: 4 }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/PatientInDto" }
+            examples:
+              cambio1: { $ref: "#/components/examples/PatientIn_example1" }
+              cambio2: { $ref: "#/components/examples/PatientIn_example2" }
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/PatientOutDto" }
+              examples:
+                ok1: { $ref: "#/components/examples/PatientOut_example1" }
+                ok2: { $ref: "#/components/examples/PatientOut_example2" }
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+    delete:
+      tags: [patients]
+      summary: Eliminar paciente
+      parameters:
+        - name: patientId
+          in: path
+          required: true
+          description: Identificador del paciente
+          schema: { type: number, format: int64 }
+          examples:
+            id1: { value: 2 }
+            id2: { value: 4 }
+      responses:
+        "204":
+          description: No content
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+
+  ############################
+  # Medicines (CRUD)
+  ############################
+  /medicines:
+    get:
+      tags: [medicines]
+      summary: Listado de medicamentos
+      parameters:
+        - name: name
+          in: query
+          required: false
+          description: Nombre del medicamento
+          schema: { type: string }
+          examples:
+            n1: { value: "Ibuprofeno" }
+            n2: { value: "Paracetamol" }
+        - name: manufacturer
+          in: query
+          required: false
+          description: Fabricante
+          schema: { type: string }
+          examples:
+            m1: { value: "FarmaSA" }
+            m2: { value: "MedCorp" }
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/MedicineOutDto" }
+              examples:
+                lista1: { $ref: "#/components/examples/MedicineList_example1" }
+                lista2: { $ref: "#/components/examples/MedicineList_example2" }
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+    post:
+      tags: [medicines]
+      summary: Crear medicamento
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/MedicineRegistrationDto" }
+            examples:
+              alta1: { $ref: "#/components/examples/MedicineRegistration_example1" }
+              alta2: { $ref: "#/components/examples/MedicineRegistration_example2" }
+      responses:
+        "201":
+          description: Creado
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/MedicineOutDto" }
+              examples:
+                ok1: { $ref: "#/components/examples/MedicineOut_example1" }
+                ok2: { $ref: "#/components/examples/MedicineOut_example2" }
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+
+  /medicines/{medicineId}:
+    get:
+      tags: [medicines]
+      summary: Detalle de medicamento
+      parameters:
+        - name: medicineId
+          in: path
+          required: true
+          description: Identificador del medicamento
+          schema: { type: number, format: int64 }
+          examples:
+            id1: { value: 10 }
+            id2: { value: 11 }
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/MedicineOutDto" }
+              examples:
+                ok1: { $ref: "#/components/examples/MedicineOut_example1" }
+                ok2: { $ref: "#/components/examples/MedicineOut_example2" }
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+    put:
+      tags: [medicines]
+      summary: Modificar medicamento
+      parameters:
+        - name: medicineId
+          in: path
+          required: true
+          description: Identificador del medicamento
+          schema: { type: number, format: int64 }
+          examples:
+            id1: { value: 10 }
+            id2: { value: 11 }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/MedicineInDto" }
+            examples:
+              cambio1: { $ref: "#/components/examples/MedicineIn_example1" }
+              cambio2: { $ref: "#/components/examples/MedicineIn_example2" }
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/MedicineOutDto" }
+              examples:
+                ok1: { $ref: "#/components/examples/MedicineOut_example1" }
+                ok2: { $ref: "#/components/examples/MedicineOut_example2" }
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+    delete:
+      tags: [medicines]
+      summary: Eliminar medicamento
+      parameters:
+        - name: medicineId
+          in: path
+          required: true
+          description: Identificador del medicamento
+          schema: { type: number, format: int64 }
+          examples:
+            id1: { value: 10 }
+            id2: { value: 11 }
+      responses:
+        "204":
+          description: No content
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+
+  ############################
+  # Prescriptions (CRUD)
+  ############################
+  /prescriptions:
+    get:
+      tags: [prescriptions]
+      summary: Listado de prescripciones
+      parameters:
+        - name: active
+          in: query
+          required: false
+          description: Filtro por activas
+          schema: { type: boolean }
+          examples:
+            a1: { value: true }
+            a2: { value: false }
+        - name: durationDays
+          in: query
+          required: false
+          description: Duración mínima
+          schema: { type: integer, format: int32, minimum: 0 }
+          examples:
+            d1: { value: 7 }
+            d2: { value: 14 }
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/PrescriptionOutDto" }
+              examples:
+                lista1: { $ref: "#/components/examples/PrescriptionList_example1" }
+                lista2: { $ref: "#/components/examples/PrescriptionList_example2" }
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+
+  /prescriptions/{prescriptionId}:
+    get:
+      tags: [prescriptions]
+      summary: Detalle de una prescripción
+      parameters:
+        - name: prescriptionId
+          in: path
+          required: true
+          description: Identificador de la prescripción
+          schema: { type: number, format: int64 }
+          examples:
+            id1: { value: 33 }
+            id2: { value: 41 }
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/PrescriptionOutDto" }
+              examples:
+                ok1: { $ref: "#/components/examples/PrescriptionOut_example1" }
+                ok2: { $ref: "#/components/examples/PrescriptionOut_example2" }
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+    put:
+      tags: [prescriptions]
+      summary: Modificar una prescripción
+      parameters:
+        - name: prescriptionId
+          in: path
+          required: true
+          description: Identificador de la prescripción
+          schema: { type: number, format: int64 }
+          examples:
+            id1: { value: 33 }
+            id2: { value: 41 }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/PrescriptionInDto" }
+            examples:
+              cambio1: { $ref: "#/components/examples/PrescriptionIn_example1" }
+              cambio2: { $ref: "#/components/examples/PrescriptionIn_example2" }
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/PrescriptionOutDto" }
+              examples:
+                ok1: { $ref: "#/components/examples/PrescriptionOut_example1" }
+                ok2: { $ref: "#/components/examples/PrescriptionOut_example2" }
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+    delete:
+      tags: [prescriptions]
+      summary: Eliminar una prescripción
+      parameters:
+        - name: prescriptionId
+          in: path
+          required: true
+          description: Identificador de la prescripción
+          schema: { type: number, format: int64 }
+          examples:
+            id1: { value: 33 }
+            id2: { value: 41 }
+      responses:
+        "204":
+          description: No content
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+
+  /appointments/{appointmentId}/medicines/{medicineId}/prescriptions:
+    post:
+      tags: [prescriptions, appointments, medicines]
+      summary: Crear una prescripción para una cita y un medicamento
+      parameters:
+        - name: appointmentId
+          in: path
+          required: true
+          description: Identificador de la cita
+          schema: { type: number, format: int64 }
+          examples:
+            a1: { value: 12 }
+            a2: { value: 21 }
+        - name: medicineId
+          in: path
+          required: true
+          description: Identificador del medicamento
+          schema: { type: number, format: int64 }
+          examples:
+            m1: { value: 10 }
+            m2: { value: 11 }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/PrescriptionRegistrationDto" }
+            examples:
+              alta1: { $ref: "#/components/examples/PrescriptionRegistration_example1" }
+              alta2: { $ref: "#/components/examples/PrescriptionRegistration_example2" }
+      responses:
+        "201":
+          description: Creado
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/PrescriptionOutDto" }
+              examples:
+                ok1: { $ref: "#/components/examples/PrescriptionOut_example1" }
+                ok2: { $ref: "#/components/examples/PrescriptionOut_example2" }
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+
+components:
+
+  ############################
+  # Schemas
+  ############################
+  schemas:
+    # Appointments
+    AppointmentRegistrationDto:
+      type: object
+      properties:
+        date: { type: string, format: date }
+        reason: { type: string }
+        confirmed: { type: boolean }
+        cost: { type: number, format: float, minimum: 0 }
+        durationMinutes: { type: integer, format: int32, minimum: 1 }
+      required: [date]
+    AppointmentInDto:
+      type: object
+      properties:
+        date: { type: string, format: date }
+        reason: { type: string }
+        confirmed: { type: boolean }
+        cost: { type: number, format: float, minimum: 0 }
+        durationMinutes: { type: integer, format: int32, minimum: 1 }
+    AppointmentOutDto:
+      type: object
+      properties:
+        id: { type: number, format: int64 }
+        date: { type: string, format: date }
+        reason: { type: string }
+        confirmed: { type: boolean }
+        cost: { type: number, format: float }
+        durationMinutes: { type: integer, format: int32 }
+        patientId: { type: number, format: int64 }
+        doctorId: { type: number, format: int64 }
+
+    # Doctors
+    DoctorRegistrationDto:
+      type: object
+      properties:
+        name: { type: string }
+        surname: { type: string }
+        licenseNumber: { type: string }
+        specialty: { type: string }
+        hiringDate: { type: string, format: date }
+        active: { type: boolean }
+      required: [name, surname, licenseNumber]
+    DoctorInDto:
+      type: object
+      properties:
+        name: { type: string }
+        surname: { type: string }
+        licenseNumber: { type: string }
+        specialty: { type: string }
+        hiringDate: { type: string, format: date }
+        active: { type: boolean }
+    DoctorOutDto:
+      type: object
+      properties:
+        id: { type: number, format: int64 }
+        name: { type: string }
+        surname: { type: string }
+        licenseNumber: { type: string }
+        specialty: { type: string }
+        hiringDate: { type: string, format: date }
+        active: { type: boolean }
+
+    # Patients
+    PatientRegistrationDto:
+      type: object
+      properties:
+        name: { type: string }
+        surname: { type: string }
+        email: { type: string, format: email }
+        birthDate: { type: string, format: date }
+        active: { type: boolean }
+        weightKg: { type: number, format: float, minimum: 0 }
+      required: [name, surname, email, birthDate, active]
+    PatientInDto:
+      type: object
+      properties:
+        name: { type: string }
+        surname: { type: string }
+        email: { type: string, format: email }
+        birthDate: { type: string, format: date }
+        active: { type: boolean }
+        weightKg: { type: number, format: float, minimum: 0 }
+    PatientOutDto:
+      type: object
+      properties:
+        id: { type: number, format: int64 }
+        name: { type: string }
+        surname: { type: string }
+        email: { type: string, format: email }
+        birthDate: { type: string, format: date }
+        active: { type: boolean }
+        weightKg: { type: number, format: float }
+
+    # Medicines
+    MedicineRegistrationDto:
+      type: object
+      properties:
+        name: { type: string }
+        manufacturer: { type: string }
+        price: { type: number, format: float, minimum: 0 }
+        prescriptionRequired: { type: boolean }
+        expiryDate: { type: string, format: date }
+        stock: { type: integer, format: int32, minimum: 0 }
+      required: [name, price]
+    MedicineInDto:
+      type: object
+      properties:
+        name: { type: string }
+        manufacturer: { type: string }
+        price: { type: number, format: float, minimum: 0 }
+        prescriptionRequired: { type: boolean }
+        expiryDate: { type: string, format: date }
+        stock: { type: integer, format: int32, minimum: 0 }
+    MedicineOutDto:
+      type: object
+      properties:
+        id: { type: number, format: int64 }
+        name: { type: string }
+        manufacturer: { type: string }
+        price: { type: number, format: float }
+        prescriptionRequired: { type: boolean }
+        expiryDate: { type: string, format: date }
+        stock: { type: integer, format: int32 }
+
+    # Prescriptions
+    PrescriptionRegistrationDto:
+      type: object
+      properties:
+        notes: { type: string }
+        active: { type: boolean }
+        durationDays: { type: integer, format: int32, minimum: 0 }
+        totalCost: { type: number, format: float, minimum: 0 }
+        dosageInstructions: { type: string }
+      required: [notes]
+    PrescriptionInDto:
+      type: object
+      properties:
+        notes: { type: string }
+        active: { type: boolean }
+        durationDays: { type: integer, format: int32, minimum: 0 }
+        totalCost: { type: number, format: float, minimum: 0 }
+        dosageInstructions: { type: string }
+    PrescriptionOutDto:
+      type: object
+      properties:
+        id: { type: number, format: int64 }
+        notes: { type: string }
+        active: { type: boolean }
+        durationDays: { type: integer, format: int32 }
+        totalCost: { type: number, format: float }
+        dosageInstructions: { type: string }
+        appointmentId: { type: number, format: int64 }
+        medicineId: { type: number, format: int64 }
+
+    # Error model
+    ErrorResponse:
+      type: object
+      properties:
+        code: { type: integer, format: int32, description: Código de error }
+        message: { type: string, description: Descripción del error }
+        errorMessages:
+          type: object
+          additionalProperties:
+            type: string
+          description: Mapa campo->mensaje de validación
+
+  ############################
+  # Prebuilt responses (con ejemplos)
+  ############################
+  responses:
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/ErrorResponse" }
+          examples:
+            bad1: { $ref: "#/components/examples/BadRequest_example1" }
+            bad2: { $ref: "#/components/examples/BadRequest_example2" }
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/ErrorResponse" }
+          examples:
+            nf1: { $ref: "#/components/examples/NotFound_example1" }
+            nf2: { $ref: "#/components/examples/NotFound_example2" }
+    InternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/ErrorResponse" }
+          examples:
+            e1: { $ref: "#/components/examples/InternalServerError_example1" }
+            e2: { $ref: "#/components/examples/InternalServerError_example2" }
+
+  ############################
+  # Examples (reutilizables)
+  ############################
+  examples:
+
+    # Appointments
+    AppointmentRegistration_example1:
+      value: { date: "2025-08-21", reason: "Revisión general", confirmed: true, cost: 50.0, durationMinutes: 30 }
+    AppointmentRegistration_example2:
+      value: { date: "2025-09-02", reason: "Consulta digestiva", confirmed: false, cost: 0.0, durationMinutes: 20 }
+
+    AppointmentIn_example1:
+      value: { confirmed: false, cost: 60.0 }
+    AppointmentIn_example2:
+      value: { reason: "Cambio de motivo", durationMinutes: 25 }
+
+    AppointmentOut_example1:
+      value: { id: 12, date: "2025-08-21", reason: "Revisión general", confirmed: true, cost: 50.0, durationMinutes: 30, patientId: 3, doctorId: 5 }
+    AppointmentOut_example2:
+      value: { id: 13, date: "2025-09-02", reason: "Consulta digestiva", confirmed: false, cost: 0.0, durationMinutes: 20, patientId: 8, doctorId: 2 }
+
+    AppointmentList_example1:
+      value:
+        - { id: 12, date: "2025-08-21", reason: "Revisión general", confirmed: true, cost: 50.0, durationMinutes: 30, patientId: 3, doctorId: 5 }
+        - { id: 13, date: "2025-08-22", reason: "Analítica", confirmed: false, cost: 25.5, durationMinutes: 15, patientId: 4, doctorId: 5 }
+    AppointmentList_example2:
+      value: []
+
+    # Doctors
+    DoctorRegistration_example1:
+      value: { name: "Laura", surname: "Núñez", licenseNumber: "ABC123", specialty: "Pediatría", hiringDate: "2023-01-15", active: true }
+    DoctorRegistration_example2:
+      value: { name: "Miguel", surname: "López", licenseNumber: "ZZZ999", specialty: "Traumatología", active: false }
+
+    DoctorIn_example1:
+      value: { specialty: "Dermatología", active: true }
+    DoctorIn_example2:
+      value: { hiringDate: "2024-05-01" }
+
+    DoctorOut_example1:
+      value: { id: 7, name: "Laura", surname: "Núñez", licenseNumber: "ABC123", specialty: "Pediatría", hiringDate: "2023-01-15", active: true }
+    DoctorOut_example2:
+      value: { id: 9, name: "Miguel", surname: "López", licenseNumber: "ZZZ999", specialty: "Traumatología", active: false }
+
+    DoctorList_example1:
+      value:
+        - { id: 7, name: "Laura", surname: "Núñez", licenseNumber: "ABC123", specialty: "Pediatría", hiringDate: "2023-01-15", active: true }
+        - { id: 9, name: "Miguel", surname: "López", licenseNumber: "ZZZ999", specialty: "Traumatología", active: false }
+    DoctorList_example2:
+      value: []
+
+    # Patients
+    PatientRegistration_example1:
+      value: { name: "Carlos", surname: "Jiménez", email: "carlosj@gmail.com", birthDate: "1999-03-27", active: true, weightKg: 76.4 }
+    PatientRegistration_example2:
+      value: { name: "Laura", surname: "Núñez", email: "laura@mail.com", birthDate: "1995-10-10", active: false, weightKg: 58.0 }
+
+    PatientIn_example1:
+      value: { email: "nuevo@mail.com", active: true }
+    PatientIn_example2:
+      value: { weightKg: 80.2 }
+
+    PatientOut_example1:
+      value: { id: 2, name: "Carlos", surname: "Jiménez", email: "carlosj@gmail.com", birthDate: "1999-03-27", active: true, weightKg: 76.4 }
+    PatientOut_example2:
+      value: { id: 4, name: "Laura", surname: "Núñez", email: "laura@mail.com", birthDate: "1995-10-10", active: false, weightKg: 58.0 }
+
+    PatientList_example1:
+      value:
+        - { id: 2, name: "Carlos", surname: "Jiménez", email: "carlosj@gmail.com", birthDate: "1999-03-27", active: true, weightKg: 76.4 }
+        - { id: 4, name: "Laura", surname: "Núñez", email: "laura@mail.com", birthDate: "1995-10-10", active: false, weightKg: 58.0 }
+    PatientList_example2:
+      value: []
+
+    # Medicines
+    MedicineRegistration_example1:
+      value: { name: "Ibuprofeno", manufacturer: "FarmaSA", price: 15, prescriptionRequired: false, expiryDate: "2026-08-13", stock: 100 }
+    MedicineRegistration_example2:
+      value: { name: "Paracetamol", price: 5, prescriptionRequired: false, stock: 50 }
+
+    MedicineIn_example1:
+      value: { price: 12.5, stock: 120 }
+    MedicineIn_example2:
+      value: { prescriptionRequired: true }
+
+    MedicineOut_example1:
+      value: { id: 10, name: "Ibuprofeno", manufacturer: "FarmaSA", price: 15, prescriptionRequired: false, expiryDate: "2026-08-13", stock: 100 }
+    MedicineOut_example2:
+      value: { id: 11, name: "Paracetamol", manufacturer: "MedCorp", price: 5, prescriptionRequired: false, stock: 50 }
+
+    MedicineList_example1:
+      value:
+        - { id: 10, name: "Ibuprofeno", manufacturer: "FarmaSA", price: 15, prescriptionRequired: false, expiryDate: "2026-08-13", stock: 100 }
+        - { id: 11, name: "Paracetamol", manufacturer: "MedCorp", price: 5, prescriptionRequired: false, stock: 50 }
+    MedicineList_example2:
+      value: []
+
+    # Prescriptions
+    PrescriptionRegistration_example1:
+      value: { notes: "Tomar después de las comidas", active: true, durationDays: 7, totalCost: 12.5, dosageInstructions: "1 cada 8 horas" }
+    PrescriptionRegistration_example2:
+      value: { notes: "Antes de dormir", active: false, durationDays: 5, totalCost: 8.75 }
+
+    PrescriptionIn_example1:
+      value: { active: false }
+    PrescriptionIn_example2:
+      value: { durationDays: 10, totalCost: 15.0 }
+
+    PrescriptionOut_example1:
+      value: { id: 33, notes: "Tomar después de las comidas", active: true, durationDays: 7, totalCost: 12.5, dosageInstructions: "1 cada 8 horas", appointmentId: 12, medicineId: 10 }
+    PrescriptionOut_example2:
+      value: { id: 41, notes: "Antes de dormir", active: false, durationDays: 5, totalCost: 8.75, appointmentId: 21, medicineId: 11 }
+
+    PrescriptionList_example1:
+      value:
+        - { id: 33, notes: "Tomar después de las comidas", active: true, durationDays: 7, totalCost: 12.5, appointmentId: 12, medicineId: 10 }
+        - { id: 41, notes: "Antes de dormir", active: false, durationDays: 5, totalCost: 8.75, appointmentId: 21, medicineId: 11 }
+    PrescriptionList_example2:
+      value: []
+
+    # Errors
+    BadRequest_example1:
+      value: { code: 400, message: "Bad Request", errorMessages: { date: "La fecha de la cita es obligatoria" } }
+    BadRequest_example2:
+      value: { code: 400, message: "Bad Request", errorMessages: { price: "El precio no puede ser negativo" } }
+    NotFound_example1:
+      value: { code: 404, message: "Not Found" }
+    NotFound_example2:
+      value: { code: 404, message: "Not Found" }
+    InternalServerError_example1:
+      value: { code: 500, message: "Internal Server Error" }
+    InternalServerError_example2:
+      value: { code: 500, message: "Internal Server Error" }

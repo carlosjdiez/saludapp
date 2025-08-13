@@ -1,0 +1,695 @@
+{
+  "v": 6,
+  "name": "medicalapp",
+  "folders": [
+    {
+      "v": 6,
+      "name": "JPQL",
+      "folders": [],
+      "requests": [
+        {
+          "v": "11",
+          "name": "/appointments/jpql/by-patient-email",
+          "method": "GET",
+          "endpoint": "http://localhost:8080/appointments/jpql/by-patient-email?email=carlosj@gmail.com",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": [],
+          "responses": {}
+        },
+        {
+          "v": "11",
+          "name": "/appointments/jpql/by-doctor-name",
+          "method": "GET",
+          "endpoint": "http://localhost:8080/appointments/jpql/by-doctor-name?name=Nacho",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": [],
+          "responses": {}
+        },
+        {
+          "v": "11",
+          "name": "/appointments/jpql/with-cost-greater-than",
+          "method": "GET",
+          "endpoint": "http://localhost:8080/appointments/jpql/with-cost-greater-than?cost=50",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": [],
+          "responses": {}
+        }
+      ],
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "headers": [],
+      "_ref_id": "coll_mea0o5jn_03bc997d-9eda-4892-bc72-bedcdeb0c9de"
+    },
+    {
+      "v": 6,
+      "name": "SQL",
+      "folders": [],
+      "requests": [
+        {
+          "v": "11",
+          "name": "/appointments/native/by-patient-email",
+          "method": "GET",
+          "endpoint": "http://localhost:8080/appointments/native/by-patient-email?email=carlosj@gmail.com",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": [],
+          "responses": {}
+        },
+        {
+          "v": "11",
+          "name": "/appointments/native/by-doctor-name",
+          "method": "GET",
+          "endpoint": "http://localhost:8080/appointments/native/by-doctor-name?name=Nacho",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": [],
+          "responses": {}
+        },
+        {
+          "v": "11",
+          "name": "/appointments/native/with-cost-greater-than",
+          "method": "GET",
+          "endpoint": "http://localhost:8080/appointments/native/with-cost-greater-than?cost=50",
+          "params": [],
+          "headers": [],
+          "preRequestScript": "",
+          "testScript": "",
+          "auth": {
+            "authType": "inherit",
+            "authActive": true
+          },
+          "body": {
+            "contentType": null,
+            "body": null
+          },
+          "requestVariables": [],
+          "responses": {}
+        }
+      ],
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "headers": [],
+      "_ref_id": "coll_mea0v8iz_ff365f43-c024-4fea-95b3-6e06f3e1744a"
+    }
+  ],
+  "requests": [
+    {
+      "v": "11",
+      "name": "/appointments",
+      "method": "GET",
+      "endpoint": "http://localhost:8080/appointments",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "11",
+      "name": "/appointments/{appointmentId}",
+      "method": "GET",
+      "endpoint": "http://localhost:8080/appointments/{appointmentId}",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "11",
+      "name": "/patients/{patientId}/doctors/{doctorId}/appointments",
+      "method": "POST",
+      "endpoint": "http://localhost:8080/patients/6/doctors/6/appointments",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": "application/json",
+        "body": "{\n  \"date\" : \"2025-08-13\",\n  \"reason\": \"indicios de fiebre\",\n  \"confirmed\": true,\n  \"cost\": 200,\n  \"durationMinutes\": 300\n}"
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "11",
+      "name": "/appointments/{appointmentId}",
+      "method": "PUT",
+      "endpoint": "http://localhost:8080/appointments",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "11",
+      "name": "/appointments/{appointmentId}",
+      "method": "DELETE",
+      "endpoint": "http://localhost:8080/appointments/2",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "11",
+      "name": "/doctors",
+      "method": "GET",
+      "endpoint": "http://localhost:8080/doctors",
+      "params": [
+        {
+          "key": "specialty",
+          "value": "Urgencias",
+          "active": true,
+          "description": ""
+        }
+      ],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": "application/json",
+        "body": ""
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "11",
+      "name": "/doctors/{doctorId}",
+      "method": "GET",
+      "endpoint": "http://localhost:8080/doctors/6",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": "application/json",
+        "body": ""
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "11",
+      "name": "/doctors",
+      "method": "POST",
+      "endpoint": "http://localhost:8080/doctors",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": "application/json",
+        "body": "  {\n    \"name\": \"Diego\",\n    \"surname\": \"Lopez\",\n    \"licenseNumber\": 200,\n    \"specialty\": \"Roturas\",\n    \"hiringDate\": \"2025-08-13\",\n    \"active\": true\n  }"
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "11",
+      "name": "/doctors/{doctorId}",
+      "method": "PUT",
+      "endpoint": "http://localhost:8080/appointments/2",
+      "params": [
+        {
+          "key": "carId",
+          "value": "67",
+          "active": true,
+          "description": ""
+        }
+      ],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "11",
+      "name": "/doctors/{doctorId}",
+      "method": "DELETE",
+      "endpoint": "http://localhost:8080/doctors/5",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": "application/json",
+        "body": ""
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "11",
+      "name": "/patients",
+      "method": "GET",
+      "endpoint": "http://localhost:8080/patients",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "11",
+      "name": "/patients/{patientId}",
+      "method": "GET",
+      "endpoint": "http://localhost:8080/patients/6",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "11",
+      "name": "/patients",
+      "method": "POST",
+      "endpoint": "http://localhost:8080/patients",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": "application/json",
+        "body": "{\n  \"name\": \"carlos\",\n  \"surname\": \"jimenez\",\n  \"email\": \"carlosj@gmail.com\",\n  \"birthDate\": \"1999-03-27\",\n  \"active\": true,\n  \"weightKg\": 73\n}"
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "11",
+      "name": "/patients/{patientId}",
+      "method": "PUT",
+      "endpoint": "http://localhost:8080/patients",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "11",
+      "name": "/patients/{patientId}",
+      "method": "DELETE",
+      "endpoint": "http://localhost:8080/patients/5",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "11",
+      "name": "/medicines",
+      "method": "GET",
+      "endpoint": "http://localhost:8080/medicines",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": "application/json",
+        "body": ""
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "11",
+      "name": "/medicines/{medicineId}",
+      "method": "GET",
+      "endpoint": "http://localhost:8080/medicines",
+      "params": [
+        {
+          "key": "carId",
+          "value": "67",
+          "active": true,
+          "description": ""
+        }
+      ],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "11",
+      "name": "/medicines",
+      "method": "POST",
+      "endpoint": "http://localhost:8080/medicines",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": "application/json",
+        "body": "{\n  \"name\": \"ibuprofeno\",\n  \"manufacturer\": \"farmaSA\",\n  \"price\": 15,\n  \"prescriptionRequired\": false,\n  \"expiryDate\": \"2026-08-13\",\n  \"stock\": 100\n}"
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "11",
+      "name": "/medicines/{medicineId}",
+      "method": "PUT",
+      "endpoint": "http://localhost:8080/medicines",
+      "params": [
+        {
+          "key": "carId",
+          "value": "67",
+          "active": true,
+          "description": ""
+        }
+      ],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "11",
+      "name": "/medicines/{medicineId}",
+      "method": "DELETE",
+      "endpoint": "http://localhost:8080/medicines",
+      "params": [
+        {
+          "key": "carId",
+          "value": "67",
+          "active": true,
+          "description": ""
+        }
+      ],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "11",
+      "name": "/prescriptions",
+      "method": "GET",
+      "endpoint": "http://localhost:8080/prescriptions",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "11",
+      "name": "/prescriptions/{prescriptionId}",
+      "method": "GET",
+      "endpoint": "http://localhost:8080/prescriptions",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "11",
+      "name": "/appointments/{appointmentId}/medicines/{medicineId}/prescriptions",
+      "method": "POST",
+      "endpoint": "http://localhost:8080/appointments/1/medicines/2/prescriptions",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": "application/json",
+        "body": "{\n  \"notes\": \"ninguna\",\n  \"active\": true,\n  \"durationDays\": 5,\n  \"totalCost\": 10,\n  \"dosageInstructions\": \"cada 8 horas\"\n}"
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "11",
+      "name": "/prescriptions/{prescriptionId}",
+      "method": "PUT",
+      "endpoint": "http://localhost:8080/prescriptions",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {}
+    },
+    {
+      "v": "11",
+      "name": "/prescriptions/{prescriptionId}",
+      "method": "DELETE",
+      "endpoint": "http://localhost:8080/prescriptions",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": "application/json",
+        "body": ""
+      },
+      "requestVariables": [],
+      "responses": {}
+    }
+  ],
+  "headers": [],
+  "auth": {
+    "authType": "none",
+    "authActive": true
+  },
+  "_ref_id": "coll_me9r1d78_dbe7e5c7-985e-4ce5-955b-b6900814dd42"
+}
