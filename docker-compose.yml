@@ -1,0 +1,43 @@
+version: "3.4"
+name: myapi-mariadb
+services:
+  mariadb:
+    image: mariadb:11.2.6
+    container_name: mariadb
+    restart: always
+    env_file: ./.env
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: [ CMD, healthcheck.sh, --connect, --innodb_initialized]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+    networks:
+      - network-saludapp
+  app:
+    image: saludapp
+    container_name: myapi
+    env_file: ./.env
+    ports:
+      - $SPRING_PORT:$SPRING_PORT
+    environment:
+      SPRING_APPLICATION_JSON: '{
+                 "spring.datasource.url" : "jdbc:mariadb://$MARIADB_HOST:$MARIADB_PORT/$MARIADB_DATABASE",
+                 "spring.datasource.username" : "$MARIADB_USERNAME",
+                 "spring.datasource.password" : "$MARIADB_PASSWORD",
+                 "spring.datasource.driverClassName" : "org.mariadb.jdbc.Driver",
+                 "spring.jpa.database-platform-dialect" : "org.hibernate.dialect.MariaDBDialect",
+                 "spring.jpa.hibernate.ddl-auto" : "update",
+                 "server.port" : "$SPRING_PORT"
+               }'
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    restart: on-failure
+    networks:
+      - network-saludapp
+networks:
+  network-saludapp:
+    driver: bridge
+

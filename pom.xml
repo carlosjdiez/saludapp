@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.svalero</groupId>
 	<artifactId>saludapp</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1</version>
 	<name>saludapp</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
@@ -63,7 +63,14 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+			<version>3.5.2</version>
+		</dependency>
 	</dependencies>
+
 
 	<build>
 		<plugins>
