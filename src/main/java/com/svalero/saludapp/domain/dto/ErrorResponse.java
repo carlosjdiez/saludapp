@@ -1,10 +1,12 @@
 package com.svalero.saludapp.domain.dto;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Map;
 
 @Data
+@NoArgsConstructor
 public class ErrorResponse {
 
     private int code;
