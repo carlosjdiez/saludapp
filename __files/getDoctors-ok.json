@@ -1,0 +1,9 @@
+{
+  "id": 10,
+  "name": "Luis",
+  "surname": "Pérez",
+  "licenseNumber": "COL-12345",
+  "specialty": "Cardiology",
+  "hiringDate": "2022-01-15",
+  "active": true
+}

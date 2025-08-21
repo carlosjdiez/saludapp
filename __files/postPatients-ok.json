@@ -1,0 +1,9 @@
+{
+  "id": 1,
+  "name": "Ana",
+  "surname": "García",
+  "email": "ana@example.com",
+  "birthDate": "1990-03-12",
+  "active": true,
+  "weightKg": 64.5
+}

@@ -1,0 +1,8 @@
+{
+  "id": 100,
+  "name": "Ibuprofen (updated)",
+  "description": "Anti-inflammatory",
+  "category": "Analgesic",
+  "price": 4.75,
+  "available": true
+}

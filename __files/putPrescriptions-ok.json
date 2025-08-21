@@ -1,0 +1,10 @@
+{
+  "id": 300,
+  "notes": "Take after meals - updated",
+  "active": true,
+  "durationDays": 7,
+  "totalCost": 12.5,
+  "dosageInstructions": "1 pill x 8h",
+  "appointmentId": 200,
+  "medicineId": 100
+}

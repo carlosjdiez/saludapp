@@ -1,0 +1,19 @@
+{
+  "priority": 1,
+  "request": {
+    "method": "POST",
+    "url": "/appointments",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$[?(@.date == '2025-09-01T10:30:00')]"
+      }
+    ]
+  },
+  "response": {
+    "status": 409,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "errors-409.json"
+  }
+}

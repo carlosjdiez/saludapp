@@ -1,0 +1,22 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/patients/[0-9]+/doctors/[0-9]+/appointments"
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "id": 200,
+      "date": "2025-09-01T10:30:00",
+      "reason": "Checkup",
+      "confirmed": true,
+      "cost": 45.0,
+      "durationMinutes": 30,
+      "patientId": 1,
+      "doctorId": 10
+    }
+  }
+}

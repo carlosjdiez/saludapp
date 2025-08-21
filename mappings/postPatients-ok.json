@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/patients"
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "postPatients-ok.json"
+  }
+}

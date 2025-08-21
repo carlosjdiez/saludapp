@@ -1,0 +1,15 @@
+{
+  "priority": 1,
+  "request": {
+    "method": "POST",
+    "url": "/prescriptions",
+    "bodyPatterns": [
+      { "matchesJsonPath": "$[?(!(@['notes']))]" }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "headers": { "Content-Type": "application/json" },
+    "bodyFileName": "errors-400.json"
+  }
+}
