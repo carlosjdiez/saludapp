@@ -1,695 +1,2287 @@
 {
-  "v": 6,
-  "name": "medicalapp",
-  "folders": [
-    {
-      "v": 6,
-      "name": "JPQL",
-      "folders": [],
-      "requests": [
-        {
-          "v": "11",
-          "name": "/appointments/jpql/by-patient-email",
-          "method": "GET",
-          "endpoint": "http://localhost:8080/appointments/jpql/by-patient-email?email=carlosj@gmail.com",
-          "params": [],
-          "headers": [],
-          "preRequestScript": "",
-          "testScript": "",
-          "auth": {
-            "authType": "inherit",
-            "authActive": true
-          },
-          "body": {
-            "contentType": null,
-            "body": null
-          },
-          "requestVariables": [],
-          "responses": {}
-        },
-        {
-          "v": "11",
-          "name": "/appointments/jpql/by-doctor-name",
-          "method": "GET",
-          "endpoint": "http://localhost:8080/appointments/jpql/by-doctor-name?name=Nacho",
-          "params": [],
-          "headers": [],
-          "preRequestScript": "",
-          "testScript": "",
-          "auth": {
-            "authType": "inherit",
-            "authActive": true
-          },
-          "body": {
-            "contentType": null,
-            "body": null
-          },
-          "requestVariables": [],
-          "responses": {}
-        },
-        {
-          "v": "11",
-          "name": "/appointments/jpql/with-cost-greater-than",
-          "method": "GET",
-          "endpoint": "http://localhost:8080/appointments/jpql/with-cost-greater-than?cost=50",
-          "params": [],
-          "headers": [],
-          "preRequestScript": "",
-          "testScript": "",
-          "auth": {
-            "authType": "inherit",
-            "authActive": true
-          },
-          "body": {
-            "contentType": null,
-            "body": null
-          },
-          "requestVariables": [],
-          "responses": {}
-        }
-      ],
-      "auth": {
-        "authType": "inherit",
-        "authActive": true
-      },
-      "headers": [],
-      "_ref_id": "coll_mea0o5jn_03bc997d-9eda-4892-bc72-bedcdeb0c9de"
-    },
-    {
-      "v": 6,
-      "name": "SQL",
-      "folders": [],
-      "requests": [
-        {
-          "v": "11",
-          "name": "/appointments/native/by-patient-email",
-          "method": "GET",
-          "endpoint": "http://localhost:8080/appointments/native/by-patient-email?email=carlosj@gmail.com",
-          "params": [],
-          "headers": [],
-          "preRequestScript": "",
-          "testScript": "",
-          "auth": {
-            "authType": "inherit",
-            "authActive": true
-          },
-          "body": {
-            "contentType": null,
-            "body": null
-          },
-          "requestVariables": [],
-          "responses": {}
-        },
-        {
-          "v": "11",
-          "name": "/appointments/native/by-doctor-name",
-          "method": "GET",
-          "endpoint": "http://localhost:8080/appointments/native/by-doctor-name?name=Nacho",
-          "params": [],
-          "headers": [],
-          "preRequestScript": "",
-          "testScript": "",
-          "auth": {
-            "authType": "inherit",
-            "authActive": true
-          },
-          "body": {
-            "contentType": null,
-            "body": null
-          },
-          "requestVariables": [],
-          "responses": {}
-        },
-        {
-          "v": "11",
-          "name": "/appointments/native/with-cost-greater-than",
-          "method": "GET",
-          "endpoint": "http://localhost:8080/appointments/native/with-cost-greater-than?cost=50",
-          "params": [],
-          "headers": [],
-          "preRequestScript": "",
-          "testScript": "",
-          "auth": {
-            "authType": "inherit",
-            "authActive": true
-          },
-          "body": {
-            "contentType": null,
-            "body": null
-          },
-          "requestVariables": [],
-          "responses": {}
-        }
-      ],
-      "auth": {
-        "authType": "inherit",
-        "authActive": true
-      },
-      "headers": [],
-      "_ref_id": "coll_mea0v8iz_ff365f43-c024-4fea-95b3-6e06f3e1744a"
-    }
-  ],
-  "requests": [
-    {
-      "v": "11",
-      "name": "/appointments",
-      "method": "GET",
-      "endpoint": "http://localhost:8080/appointments",
-      "params": [],
-      "headers": [],
-      "preRequestScript": "",
-      "testScript": "",
-      "auth": {
-        "authType": "inherit",
-        "authActive": true
-      },
-      "body": {
-        "contentType": null,
-        "body": null
-      },
-      "requestVariables": [],
-      "responses": {}
-    },
-    {
-      "v": "11",
-      "name": "/appointments/{appointmentId}",
-      "method": "GET",
-      "endpoint": "http://localhost:8080/appointments/{appointmentId}",
-      "params": [],
-      "headers": [],
-      "preRequestScript": "",
-      "testScript": "",
-      "auth": {
-        "authType": "inherit",
-        "authActive": true
-      },
-      "body": {
-        "contentType": null,
-        "body": null
-      },
-      "requestVariables": [],
-      "responses": {}
-    },
-    {
-      "v": "11",
-      "name": "/patients/{patientId}/doctors/{doctorId}/appointments",
-      "method": "POST",
-      "endpoint": "http://localhost:8080/patients/6/doctors/6/appointments",
-      "params": [],
-      "headers": [],
-      "preRequestScript": "",
-      "testScript": "",
-      "auth": {
-        "authType": "inherit",
-        "authActive": true
-      },
-      "body": {
-        "contentType": "application/json",
-        "body": "{\n  \"date\" : \"2025-08-13\",\n  \"reason\": \"indicios de fiebre\",\n  \"confirmed\": true,\n  \"cost\": 200,\n  \"durationMinutes\": 300\n}"
-      },
-      "requestVariables": [],
-      "responses": {}
-    },
-    {
-      "v": "11",
-      "name": "/appointments/{appointmentId}",
-      "method": "PUT",
-      "endpoint": "http://localhost:8080/appointments",
-      "params": [],
-      "headers": [],
-      "preRequestScript": "",
-      "testScript": "",
-      "auth": {
-        "authType": "inherit",
-        "authActive": true
-      },
-      "body": {
-        "contentType": null,
-        "body": null
-      },
-      "requestVariables": [],
-      "responses": {}
-    },
-    {
-      "v": "11",
-      "name": "/appointments/{appointmentId}",
-      "method": "DELETE",
-      "endpoint": "http://localhost:8080/appointments/2",
-      "params": [],
-      "headers": [],
-      "preRequestScript": "",
-      "testScript": "",
-      "auth": {
-        "authType": "inherit",
-        "authActive": true
-      },
-      "body": {
-        "contentType": null,
-        "body": null
-      },
-      "requestVariables": [],
-      "responses": {}
-    },
-    {
-      "v": "11",
-      "name": "/doctors",
-      "method": "GET",
-      "endpoint": "http://localhost:8080/doctors",
-      "params": [
-        {
-          "key": "specialty",
-          "value": "Urgencias",
-          "active": true,
-          "description": ""
-        }
-      ],
-      "headers": [],
-      "preRequestScript": "",
-      "testScript": "",
-      "auth": {
-        "authType": "inherit",
-        "authActive": true
-      },
-      "body": {
-        "contentType": "application/json",
-        "body": ""
-      },
-      "requestVariables": [],
-      "responses": {}
-    },
-    {
-      "v": "11",
-      "name": "/doctors/{doctorId}",
-      "method": "GET",
-      "endpoint": "http://localhost:8080/doctors/6",
-      "params": [],
-      "headers": [],
-      "preRequestScript": "",
-      "testScript": "",
-      "auth": {
-        "authType": "inherit",
-        "authActive": true
-      },
-      "body": {
-        "contentType": "application/json",
-        "body": ""
-      },
-      "requestVariables": [],
-      "responses": {}
-    },
-    {
-      "v": "11",
-      "name": "/doctors",
-      "method": "POST",
-      "endpoint": "http://localhost:8080/doctors",
-      "params": [],
-      "headers": [],
-      "preRequestScript": "",
-      "testScript": "",
-      "auth": {
-        "authType": "inherit",
-        "authActive": true
-      },
-      "body": {
-        "contentType": "application/json",
-        "body": "  {\n    \"name\": \"Diego\",\n    \"surname\": \"Lopez\",\n    \"licenseNumber\": 200,\n    \"specialty\": \"Roturas\",\n    \"hiringDate\": \"2025-08-13\",\n    \"active\": true\n  }"
-      },
-      "requestVariables": [],
-      "responses": {}
-    },
-    {
-      "v": "11",
-      "name": "/doctors/{doctorId}",
-      "method": "PUT",
-      "endpoint": "http://localhost:8080/appointments/2",
-      "params": [
-        {
-          "key": "carId",
-          "value": "67",
-          "active": true,
-          "description": ""
-        }
-      ],
-      "headers": [],
-      "preRequestScript": "",
-      "testScript": "",
-      "auth": {
-        "authType": "inherit",
-        "authActive": true
-      },
-      "body": {
-        "contentType": null,
-        "body": null
-      },
-      "requestVariables": [],
-      "responses": {}
-    },
-    {
-      "v": "11",
-      "name": "/doctors/{doctorId}",
-      "method": "DELETE",
-      "endpoint": "http://localhost:8080/doctors/5",
-      "params": [],
-      "headers": [],
-      "preRequestScript": "",
-      "testScript": "",
-      "auth": {
-        "authType": "inherit",
-        "authActive": true
-      },
-      "body": {
-        "contentType": "application/json",
-        "body": ""
-      },
-      "requestVariables": [],
-      "responses": {}
-    },
-    {
-      "v": "11",
-      "name": "/patients",
-      "method": "GET",
-      "endpoint": "http://localhost:8080/patients",
-      "params": [],
-      "headers": [],
-      "preRequestScript": "",
-      "testScript": "",
-      "auth": {
-        "authType": "inherit",
-        "authActive": true
-      },
-      "body": {
-        "contentType": null,
-        "body": null
-      },
-      "requestVariables": [],
-      "responses": {}
-    },
-    {
-      "v": "11",
-      "name": "/patients/{patientId}",
-      "method": "GET",
-      "endpoint": "http://localhost:8080/patients/6",
-      "params": [],
-      "headers": [],
-      "preRequestScript": "",
-      "testScript": "",
-      "auth": {
-        "authType": "inherit",
-        "authActive": true
-      },
-      "body": {
-        "contentType": null,
-        "body": null
-      },
-      "requestVariables": [],
-      "responses": {}
-    },
-    {
-      "v": "11",
-      "name": "/patients",
-      "method": "POST",
-      "endpoint": "http://localhost:8080/patients",
-      "params": [],
-      "headers": [],
-      "preRequestScript": "",
-      "testScript": "",
-      "auth": {
-        "authType": "inherit",
-        "authActive": true
-      },
-      "body": {
-        "contentType": "application/json",
-        "body": "{\n  \"name\": \"carlos\",\n  \"surname\": \"jimenez\",\n  \"email\": \"carlosj@gmail.com\",\n  \"birthDate\": \"1999-03-27\",\n  \"active\": true,\n  \"weightKg\": 73\n}"
-      },
-      "requestVariables": [],
-      "responses": {}
-    },
-    {
-      "v": "11",
-      "name": "/patients/{patientId}",
-      "method": "PUT",
-      "endpoint": "http://localhost:8080/patients",
-      "params": [],
-      "headers": [],
-      "preRequestScript": "",
-      "testScript": "",
-      "auth": {
-        "authType": "inherit",
-        "authActive": true
-      },
-      "body": {
-        "contentType": null,
-        "body": null
-      },
-      "requestVariables": [],
-      "responses": {}
-    },
-    {
-      "v": "11",
-      "name": "/patients/{patientId}",
-      "method": "DELETE",
-      "endpoint": "http://localhost:8080/patients/5",
-      "params": [],
-      "headers": [],
-      "preRequestScript": "",
-      "testScript": "",
-      "auth": {
-        "authType": "inherit",
-        "authActive": true
-      },
-      "body": {
-        "contentType": null,
-        "body": null
-      },
-      "requestVariables": [],
-      "responses": {}
-    },
-    {
-      "v": "11",
-      "name": "/medicines",
-      "method": "GET",
-      "endpoint": "http://localhost:8080/medicines",
-      "params": [],
-      "headers": [],
-      "preRequestScript": "",
-      "testScript": "",
-      "auth": {
-        "authType": "inherit",
-        "authActive": true
-      },
-      "body": {
-        "contentType": "application/json",
-        "body": ""
-      },
-      "requestVariables": [],
-      "responses": {}
-    },
-    {
-      "v": "11",
-      "name": "/medicines/{medicineId}",
-      "method": "GET",
-      "endpoint": "http://localhost:8080/medicines",
-      "params": [
-        {
-          "key": "carId",
-          "value": "67",
-          "active": true,
-          "description": ""
-        }
-      ],
-      "headers": [],
-      "preRequestScript": "",
-      "testScript": "",
-      "auth": {
-        "authType": "inherit",
-        "authActive": true
-      },
-      "body": {
-        "contentType": null,
-        "body": null
-      },
-      "requestVariables": [],
-      "responses": {}
-    },
-    {
-      "v": "11",
-      "name": "/medicines",
-      "method": "POST",
-      "endpoint": "http://localhost:8080/medicines",
-      "params": [],
-      "headers": [],
-      "preRequestScript": "",
-      "testScript": "",
-      "auth": {
-        "authType": "inherit",
-        "authActive": true
-      },
-      "body": {
-        "contentType": "application/json",
-        "body": "{\n  \"name\": \"ibuprofeno\",\n  \"manufacturer\": \"farmaSA\",\n  \"price\": 15,\n  \"prescriptionRequired\": false,\n  \"expiryDate\": \"2026-08-13\",\n  \"stock\": 100\n}"
-      },
-      "requestVariables": [],
-      "responses": {}
-    },
-    {
-      "v": "11",
-      "name": "/medicines/{medicineId}",
-      "method": "PUT",
-      "endpoint": "http://localhost:8080/medicines",
-      "params": [
-        {
-          "key": "carId",
-          "value": "67",
-          "active": true,
-          "description": ""
-        }
-      ],
-      "headers": [],
-      "preRequestScript": "",
-      "testScript": "",
-      "auth": {
-        "authType": "inherit",
-        "authActive": true
-      },
-      "body": {
-        "contentType": null,
-        "body": null
-      },
-      "requestVariables": [],
-      "responses": {}
-    },
-    {
-      "v": "11",
-      "name": "/medicines/{medicineId}",
-      "method": "DELETE",
-      "endpoint": "http://localhost:8080/medicines",
-      "params": [
-        {
-          "key": "carId",
-          "value": "67",
-          "active": true,
-          "description": ""
-        }
-      ],
-      "headers": [],
-      "preRequestScript": "",
-      "testScript": "",
-      "auth": {
-        "authType": "inherit",
-        "authActive": true
-      },
-      "body": {
-        "contentType": null,
-        "body": null
-      },
-      "requestVariables": [],
-      "responses": {}
-    },
-    {
-      "v": "11",
-      "name": "/prescriptions",
-      "method": "GET",
-      "endpoint": "http://localhost:8080/prescriptions",
-      "params": [],
-      "headers": [],
-      "preRequestScript": "",
-      "testScript": "",
-      "auth": {
-        "authType": "inherit",
-        "authActive": true
-      },
-      "body": {
-        "contentType": null,
-        "body": null
-      },
-      "requestVariables": [],
-      "responses": {}
-    },
-    {
-      "v": "11",
-      "name": "/prescriptions/{prescriptionId}",
-      "method": "GET",
-      "endpoint": "http://localhost:8080/prescriptions",
-      "params": [],
-      "headers": [],
-      "preRequestScript": "",
-      "testScript": "",
-      "auth": {
-        "authType": "inherit",
-        "authActive": true
-      },
-      "body": {
-        "contentType": null,
-        "body": null
-      },
-      "requestVariables": [],
-      "responses": {}
-    },
-    {
-      "v": "11",
-      "name": "/appointments/{appointmentId}/medicines/{medicineId}/prescriptions",
-      "method": "POST",
-      "endpoint": "http://localhost:8080/appointments/1/medicines/2/prescriptions",
-      "params": [],
-      "headers": [],
-      "preRequestScript": "",
-      "testScript": "",
-      "auth": {
-        "authType": "inherit",
-        "authActive": true
-      },
-      "body": {
-        "contentType": "application/json",
-        "body": "{\n  \"notes\": \"ninguna\",\n  \"active\": true,\n  \"durationDays\": 5,\n  \"totalCost\": 10,\n  \"dosageInstructions\": \"cada 8 horas\"\n}"
-      },
-      "requestVariables": [],
-      "responses": {}
-    },
-    {
-      "v": "11",
-      "name": "/prescriptions/{prescriptionId}",
-      "method": "PUT",
-      "endpoint": "http://localhost:8080/prescriptions",
-      "params": [],
-      "headers": [],
-      "preRequestScript": "",
-      "testScript": "",
-      "auth": {
-        "authType": "inherit",
-        "authActive": true
-      },
-      "body": {
-        "contentType": null,
-        "body": null
-      },
-      "requestVariables": [],
-      "responses": {}
-    },
-    {
-      "v": "11",
-      "name": "/prescriptions/{prescriptionId}",
-      "method": "DELETE",
-      "endpoint": "http://localhost:8080/prescriptions",
-      "params": [],
-      "headers": [],
-      "preRequestScript": "",
-      "testScript": "",
-      "auth": {
-        "authType": "inherit",
-        "authActive": true
-      },
-      "body": {
-        "contentType": "application/json",
-        "body": ""
-      },
-      "requestVariables": [],
-      "responses": {}
-    }
-  ],
-  "headers": [],
-  "auth": {
-    "authType": "none",
-    "authActive": true
-  },
-  "_ref_id": "coll_me9r1d78_dbe7e5c7-985e-4ce5-955b-b6900814dd42"
+	"info": {
+		"_postman_id": "479e75de-91c2-43d2-af91-193d41c5b06c",
+		"name": "medicalapp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44273623",
+		"_collection_link": "https://carlos-3724503.postman.co/workspace/Carlos's-Workspace~34dd7134-45f4-4f88-85d7-89a569cb65c9/collection/44273623-479e75de-91c2-43d2-af91-193d41c5b06c?action=share&source=collection_link&creator=44273623"
+	},
+	"item": [
+		{
+			"name": "mock",
+			"item": [
+				{
+					"name": "patients",
+					"item": [
+						{
+							"name": "patients ok",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/patients/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "patients bad id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/patients/abc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"abc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "patients not found",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/patients/999",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"999"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "patients ok",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"Ana\",\r\n  \"surname\": \"García\",\r\n  \"email\": \"ana@example.com\",\r\n  \"birthDate\": \"1990-03-12\",\r\n  \"active\": true,\r\n  \"weightKg\": 64.5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/patients",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "patients bad request",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 1,\r\n  \"surname\": \"García\",\r\n  \"email\": \"ana@example.com\",\r\n  \"birthDate\": \"1990-03-12\",\r\n  \"active\": true,\r\n  \"weightKg\": 64.5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/patients",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "patients duplicate",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"Ana\",\r\n  \"surname\": \"García\",\r\n  \"email\": \"ana@example.com\",\r\n  \"birthDate\": \"1990-03-12\",\r\n  \"active\": true,\r\n  \"weightKg\": 64.5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/patients",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "patients ok",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"Ana\",\r\n  \"surname\": \"García\",\r\n  \"email\": \"ana@example.com\",\r\n  \"birthDate\": \"1990-03-12\",\r\n  \"active\": true,\r\n  \"weightKg\": 64.5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/patients/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "patients bad request",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 1,\r\n  \"surname\": \"García\",\r\n  \"email\": \"ana@example.com\",\r\n  \"birthDate\": \"1990-03-12\",\r\n  \"active\": true,\r\n  \"weightKg\": 64.5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/patients/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "patients not found",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/patients/999",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"999"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "patients ok",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/patients/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "patients bad id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/patients/abc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"abc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "patients not found",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/patients/999",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"999"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "doctors",
+					"item": [
+						{
+							"name": "doctors ok",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/doctors/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"doctors",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "doctors bad id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/doctors/abc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"doctors",
+										"abc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "doctors not found",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/doctors/999",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"doctors",
+										"999"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "doctors ok",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 10,\r\n  \"name\": \"Luisa\",\r\n  \"surname\": \"Pérez\",\r\n  \"licenseNumber\": \"COL-12345\",\r\n  \"specialty\": \"Cardiology\",\r\n  \"hiringDate\": \"2022-01-15\",\r\n  \"active\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/doctors",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"doctors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "doctors bad request",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 10,\r\n  \"surname\": \"Pérez\",\r\n  \"licenseNumber\": \"COL-12345\",\r\n  \"specialty\": \"Cardiology\",\r\n  \"hiringDate\": \"2022-01-15\",\r\n  \"active\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/doctors",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"doctors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "doctors duplicate",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 10,\r\n  \"name\": \"Luis\",\r\n  \"surname\": \"Pérez\",\r\n  \"licenseNumber\": \"COL-12345\",\r\n  \"specialty\": \"Cardiology\",\r\n  \"hiringDate\": \"2022-01-15\",\r\n  \"active\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/doctors",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"doctors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "doctors ok",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"Ana\",\r\n  \"surname\": \"García\",\r\n  \"email\": \"ana@example.com\",\r\n  \"birthDate\": \"1990-03-12\",\r\n  \"active\": true,\r\n  \"weightKg\": 64.5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/doctors/10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"doctors",
+										"10"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "doctors bad request",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 10,\r\n  \"surname\": \"Pérez\",\r\n  \"licenseNumber\": \"COL-12345\",\r\n  \"specialty\": \"Cardiology\",\r\n  \"hiringDate\": \"2022-01-15\",\r\n  \"active\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/doctors/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"doctors",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "doctors not found",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/doctors/999",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"doctors",
+										"999"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "doctors ok",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/patients/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "doctors bad id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/patients/abc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"abc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "doctors not found",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/patients/999",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"999"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "medicines",
+					"item": [
+						{
+							"name": "medicines ok",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/patients/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "medicines bad id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/patients/abc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"abc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "medicines not found",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/patients/999",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"999"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "medicines ok",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"Ana\",\r\n  \"surname\": \"García\",\r\n  \"email\": \"ana@example.com\",\r\n  \"birthDate\": \"1990-03-12\",\r\n  \"active\": true,\r\n  \"weightKg\": 64.5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/patients",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "medicines bad request",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 100,\r\n  \"description\": \"Anti-inflammatory\",\r\n  \"category\": \"Analgesic\",\r\n  \"price\": 4.75,\r\n  \"available\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/medicines",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"medicines"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "medicines duplicate",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 100,\r\n  \"name\": \"Ibuprofen\",\r\n  \"description\": \"Anti-inflammatory\",\r\n  \"category\": \"Analgesic\",\r\n  \"price\": 4.75,\r\n  \"available\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/medicines",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"medicines"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "medicines ok",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"Ana\",\r\n  \"surname\": \"García\",\r\n  \"email\": \"ana@example.com\",\r\n  \"birthDate\": \"1990-03-12\",\r\n  \"active\": true,\r\n  \"weightKg\": 64.5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/patients/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "medicines bad request",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 100,\r\n  \"description\": \"Anti-inflammatory\",\r\n  \"category\": \"Analgesic\",\r\n  \"price\": 4.75,\r\n  \"available\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/medicines/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"medicines",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "medicines not found",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/patients/999",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"999"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "medicines ok",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/patients/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "medicines bad id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/patients/abc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"abc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "medicines not found",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/patients/999",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"999"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "appointments",
+					"item": [
+						{
+							"name": "appointments ok",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/patients/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "appointments bad id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/patients/abc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"abc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "appointments not found",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/patients/999",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"999"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "appointments ok",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"Ana\",\r\n  \"surname\": \"García\",\r\n  \"email\": \"ana@example.com\",\r\n  \"birthDate\": \"1990-03-12\",\r\n  \"active\": true,\r\n  \"weightKg\": 64.5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/patients",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "appointments bad request",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 200,\r\n  \"reason\": \"Checkup\",\r\n  \"confirmed\": true,\r\n  \"cost\": 45.0,\r\n  \"durationMinutes\": 30,\r\n  \"patientId\": 1,\r\n  \"doctorId\": 10\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/appointments",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"appointments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "appointments duplicate",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 200,\r\n  \"date\":\"2025-09-01T10:30:00\",\r\n  \"reason\": \"Checkup\",\r\n  \"confirmed\": true,\r\n  \"cost\": 45.0,\r\n  \"durationMinutes\": 30,\r\n  \"patientId\": 1,\r\n  \"doctorId\": 10\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/appointments",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"appointments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "appointments ok",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 200,\r\n  \"date\": \"2025-09-02T09:00:00\",\r\n  \"reason\": \"Checkup\",\r\n  \"confirmed\": true,\r\n  \"cost\": 45.0,\r\n  \"durationMinutes\": 30,\r\n  \"patientId\": 1,\r\n  \"doctorId\": 10\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/appointments/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"appointments",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "appointments bad request",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 200,\r\n  \"reason\": \"Checkup\",\r\n  \"confirmed\": true,\r\n  \"cost\": 45.0,\r\n  \"durationMinutes\": 30,\r\n  \"patientId\": 1,\r\n  \"doctorId\": 10\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/appointments/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"appointments",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "appointments not found",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 200,\r\n  \"date\": \"2025-09-02T09:00:00\",\r\n  \"reason\": \"Checkup\",\r\n  \"confirmed\": true,\r\n  \"cost\": 45.0,\r\n  \"durationMinutes\": 30,\r\n  \"patientId\": 1,\r\n  \"doctorId\": 10\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/appointments/999",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"appointments",
+										"999"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "appointments ok",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/patients/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "appointments bad id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/patients/abc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"abc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "appointments not found",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/patients/999",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"999"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "prescriptions",
+					"item": [
+						{
+							"name": "prescriptions ok",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/patients/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "prescriptions bad id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/patients/abc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"abc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "prescriptions not found",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/patients/999",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"999"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "prescriptions ok",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 300,\r\n  \"notes\": \"Take after meals\",\r\n  \"active\": true,\r\n  \"durationDays\": 7,\r\n  \"totalCost\": 12.5,\r\n  \"dosageInstructions\": \"1 pill x 8h\",\r\n  \"appointmentId\": 200,\r\n  \"medicineId\": 100\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/prescriptions",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"prescriptions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "prescriptions  bad request",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 1,\r\n  \"surname\": \"García\",\r\n  \"email\": \"ana@example.com\",\r\n  \"birthDate\": \"1990-03-12\",\r\n  \"active\": true,\r\n  \"weightKg\": 64.5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/patients",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "prescriptions duplicate",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 300,\r\n  \"notes\": \"Take after meals\",\r\n  \"active\": true,\r\n  \"durationDays\": 7,\r\n  \"totalCost\": 12.5,\r\n  \"dosageInstructions\": \"1 pill x 8h\",\r\n  \"appointmentId\": 200,\r\n  \"medicineId\": 100\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/prescriptions",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"prescriptions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "prescriptions ok",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"Ana\",\r\n  \"surname\": \"García\",\r\n  \"email\": \"ana@example.com\",\r\n  \"birthDate\": \"1990-03-12\",\r\n  \"active\": true,\r\n  \"weightKg\": 64.5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/patients/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "prescriptions bad request",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 300,\r\n  \"active\": true,\r\n  \"durationDays\": 7,\r\n  \"totalCost\": 12.5,\r\n  \"dosageInstructions\": \"1 pill x 8h\",\r\n  \"appointmentId\": 200,\r\n  \"medicineId\": 100\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/prescriptions/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"prescriptions",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "prescriptions not found",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 300,\r\n  \"notes\": \"Take after meals - updated\",\r\n  \"active\": true,\r\n  \"durationDays\": 7,\r\n  \"totalCost\": 12.5,\r\n  \"dosageInstructions\": \"1 pill x 8h\",\r\n  \"appointmentId\": 200,\r\n  \"medicineId\": 100\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/prescriptions/999",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"prescriptions",
+										"999"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "prescriptions ok",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/patients/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "prescriptions bad id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/patients/abc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"patients",
+										"abc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "prescriptions not found",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/prescriptions/999",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"prescriptions",
+										"999"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "JPQL",
+			"item": [
+				{
+					"name": "/appointments/jpql/by-patient-email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/appointments/jpql/by-patient-email?email=carlosj@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"appointments",
+								"jpql",
+								"by-patient-email"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "carlosj@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/appointments/jpql/by-doctor-name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/appointments/jpql/by-doctor-name?name=Nacho",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"appointments",
+								"jpql",
+								"by-doctor-name"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Nacho"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/appointments/jpql/with-cost-greater-than",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/appointments/jpql/with-cost-greater-than?cost=50",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"appointments",
+								"jpql",
+								"with-cost-greater-than"
+							],
+							"query": [
+								{
+									"key": "cost",
+									"value": "50"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SQL",
+			"item": [
+				{
+					"name": "/appointments/native/by-patient-email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/appointments/native/by-patient-email?email=carlosj@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"appointments",
+								"native",
+								"by-patient-email"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "carlosj@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/appointments/native/by-doctor-name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/appointments/native/by-doctor-name?name=Nacho",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"appointments",
+								"native",
+								"by-doctor-name"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Nacho"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/appointments/native/with-cost-greater-than",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/appointments/native/with-cost-greater-than?cost=50",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"appointments",
+								"native",
+								"with-cost-greater-than"
+							],
+							"query": [
+								{
+									"key": "cost",
+									"value": "50"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/appointments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/appointments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"appointments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/appointments/{appointmentId}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/appointments/{appointmentId}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"appointments",
+						"{appointmentId}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/patients/{patientId}/doctors/{doctorId}/appointments",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"date\" : \"2025-08-13\",\r\n  \"reason\": \"indicios de fiebre\",\r\n  \"confirmed\": true,\r\n  \"cost\": 200,\r\n  \"durationMinutes\": 300\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/patients/6/doctors/6/appointments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"patients",
+						"6",
+						"doctors",
+						"6",
+						"appointments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/appointments/{appointmentId}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/appointments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"appointments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/appointments/{appointmentId}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/appointments/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"appointments",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/doctors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/doctors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"doctors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/doctors/{doctorId}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/doctors/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"doctors",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/doctors",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n    \"name\": \"Diego\",\r\n    \"surname\": \"Lopez\",\r\n    \"licenseNumber\": 200,\r\n    \"specialty\": \"Roturas\",\r\n    \"hiringDate\": \"2025-08-13\",\r\n    \"active\": true\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/doctors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"doctors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/doctors/{doctorId}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/appointments/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"appointments",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/doctors/{doctorId}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/doctors/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"doctors",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/patients",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/patients",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"patients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/patients/{patientId}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/patients/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"patients",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/patients",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"carlos\",\r\n  \"surname\": \"jimenez\",\r\n  \"email\": \"carlosj@gmail.com\",\r\n  \"birthDate\": \"1999-03-27\",\r\n  \"active\": true,\r\n  \"weightKg\": 73\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/patients",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"patients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/patients/{patientId}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/patients",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"patients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/patients/{patientId}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/patients/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"patients",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/medicines",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/medicines",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"medicines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/medicines/{medicineId}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/medicines",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"medicines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/medicines",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"ibuprofeno\",\r\n  \"manufacturer\": \"farmaSA\",\r\n  \"price\": 15,\r\n  \"prescriptionRequired\": false,\r\n  \"expiryDate\": \"2026-08-13\",\r\n  \"stock\": 100\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/medicines",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"medicines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/medicines/{medicineId}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/medicines",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"medicines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/medicines/{medicineId}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/medicines",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"medicines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/prescriptions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/prescriptions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"prescriptions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/prescriptions/{prescriptionId}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/prescriptions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"prescriptions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/appointments/{appointmentId}/medicines/{medicineId}/prescriptions",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/appointments/1/medicines/2/prescriptions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"appointments",
+						"1",
+						"medicines",
+						"2",
+						"prescriptions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/prescriptions/{prescriptionId}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/prescriptions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"prescriptions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/prescriptions/{prescriptionId}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/prescriptions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"prescriptions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://gateway.local.gd:8080/carlos/hellloapi/1.3",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://gateway.local.gd:8080/carlos/hellloapi/1.3/doctors?apikey=5caf35c3-9dee-4874-b83d-c20d96394ae1",
+					"protocol": "http",
+					"host": [
+						"gateway",
+						"local",
+						"gd"
+					],
+					"port": "8080",
+					"path": [
+						"carlos",
+						"hellloapi",
+						"1.3",
+						"doctors"
+					],
+					"query": [
+						{
+							"key": "apikey",
+							"value": "5caf35c3-9dee-4874-b83d-c20d96394ae1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://gateway.local.gd:8080/carlos/hellloapi/1.3?apikey=6dff4bd0-26d4-4983-85e5-77b48183434a",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://gateway.local.gd:8080/carlos/hellloapi/1.3/doctors?apikey=6dff4bd0-26d4-4983-85e5-77b48183434a",
+					"protocol": "http",
+					"host": [
+						"gateway",
+						"local",
+						"gd"
+					],
+					"port": "8080",
+					"path": [
+						"carlos",
+						"hellloapi",
+						"1.3",
+						"doctors"
+					],
+					"query": [
+						{
+							"key": "apikey",
+							"value": "6dff4bd0-26d4-4983-85e5-77b48183434a"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
 }
