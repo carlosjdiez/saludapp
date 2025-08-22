@@ -15,11 +15,26 @@
 					"item": [
 						{
 							"name": "patients ok",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has id\", function () { pm.expect(pm.response.json()).to.have.property(\"id\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/patients/1",
+									"raw": "http://localhost:8080/patients/2",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -27,7 +42,7 @@
 									"port": "8080",
 									"path": [
 										"patients",
-										"1"
+										"2"
 									]
 								}
 							},
@@ -35,6 +50,21 @@
 						},
 						{
 							"name": "patients bad id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () { pm.response.to.have.status(400); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has message\", function () { pm.expect(pm.response.json()).to.have.property(\"message\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -55,6 +85,21 @@
 						},
 						{
 							"name": "patients not found",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () { pm.response.to.have.status(404); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body code is NOT_FOUND\", function () { pm.expect(pm.response.json().code).to.eql(\"NOT_FOUND\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -75,12 +120,27 @@
 						},
 						{
 							"name": "patients ok",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () { pm.response.to.have.status(201); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has id\", function () { pm.expect(pm.response.json()).to.have.property(\"id\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"Ana\",\r\n  \"surname\": \"García\",\r\n  \"email\": \"ana@example.com\",\r\n  \"birthDate\": \"1990-03-12\",\r\n  \"active\": true,\r\n  \"weightKg\": 64.5\r\n}",
+									"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"Anaa\",\r\n  \"surname\": \"García\",\r\n  \"email\": \"ana@example.com\",\r\n  \"birthDate\": \"1990-03-12\",\r\n  \"active\": true,\r\n  \"weightKg\": 64.5\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -103,6 +163,21 @@
 						},
 						{
 							"name": "patients bad request",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () { pm.response.to.have.status(400); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has message\", function () { pm.expect(pm.response.json()).to.have.property(\"message\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -131,6 +206,21 @@
 						},
 						{
 							"name": "patients duplicate",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 409\", function () { pm.response.to.have.status(409); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body code is CONFLICT\", function () { pm.expect(pm.response.json().code).to.eql(\"CONFLICT\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -159,6 +249,21 @@
 						},
 						{
 							"name": "patients ok",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has id\", function () { pm.expect(pm.response.json()).to.have.property(\"id\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "PUT",
 								"header": [],
@@ -193,6 +298,9 @@
 									"listen": "test",
 									"script": {
 										"exec": [
+											"pm.test(\"Status code is 400\", function () { pm.response.to.have.status(400); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has message\", function () { pm.expect(pm.response.json()).to.have.property(\"message\"); });\r",
 											""
 										],
 										"type": "text/javascript",
@@ -229,6 +337,21 @@
 						},
 						{
 							"name": "patients not found",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () { pm.response.to.have.status(404); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body code is NOT_FOUND\", function () { pm.expect(pm.response.json().code).to.eql(\"NOT_FOUND\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "PUT",
 								"header": [],
@@ -249,6 +372,21 @@
 						},
 						{
 							"name": "patients ok",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 204\", function () { pm.response.to.have.status(204); });\r",
+											"pm.test(\"Body is empty\", function () { pm.expect(pm.response.text()).to.have.length(0); });\r",
+											"pm.test(\"No Content-Type header\", function () { pm.expect(pm.response.headers.has(\"Content-Type\")).to.eql(true); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "DELETE",
 								"header": [],
@@ -269,6 +407,21 @@
 						},
 						{
 							"name": "patients bad id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () { pm.response.to.have.status(400); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has message\", function () { pm.expect(pm.response.json()).to.have.property(\"message\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "DELETE",
 								"header": [],
@@ -289,6 +442,21 @@
 						},
 						{
 							"name": "patients not found",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () { pm.response.to.have.status(404); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body code is NOT_FOUND\", function () { pm.expect(pm.response.json().code).to.eql(\"NOT_FOUND\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "DELETE",
 								"header": [],
@@ -314,6 +482,21 @@
 					"item": [
 						{
 							"name": "doctors ok",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has id\", function () { pm.expect(pm.response.json()).to.have.property(\"id\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -334,6 +517,21 @@
 						},
 						{
 							"name": "doctors bad id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () { pm.response.to.have.status(400); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has message\", function () { pm.expect(pm.response.json()).to.have.property(\"message\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -354,6 +552,21 @@
 						},
 						{
 							"name": "doctors not found",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () { pm.response.to.have.status(404); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body code is NOT_FOUND\", function () { pm.expect(pm.response.json().code).to.eql(\"NOT_FOUND\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -374,6 +587,21 @@
 						},
 						{
 							"name": "doctors ok",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () { pm.response.to.have.status(201); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has id\", function () { pm.expect(pm.response.json()).to.have.property(\"id\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -402,6 +630,21 @@
 						},
 						{
 							"name": "doctors bad request",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () { pm.response.to.have.status(400); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has message\", function () { pm.expect(pm.response.json()).to.have.property(\"message\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -430,6 +673,21 @@
 						},
 						{
 							"name": "doctors duplicate",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 409\", function () { pm.response.to.have.status(409); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body code is CONFLICT\", function () { pm.expect(pm.response.json().code).to.eql(\"CONFLICT\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -458,6 +716,21 @@
 						},
 						{
 							"name": "doctors ok",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has id\", function () { pm.expect(pm.response.json()).to.have.property(\"id\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "PUT",
 								"header": [],
@@ -492,6 +765,9 @@
 									"listen": "test",
 									"script": {
 										"exec": [
+											"pm.test(\"Status code is 400\", function () { pm.response.to.have.status(400); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has message\", function () { pm.expect(pm.response.json()).to.have.property(\"message\"); });\r",
 											""
 										],
 										"type": "text/javascript",
@@ -528,6 +804,21 @@
 						},
 						{
 							"name": "doctors not found",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () { pm.response.to.have.status(404); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body code is NOT_FOUND\", function () { pm.expect(pm.response.json().code).to.eql(\"NOT_FOUND\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "PUT",
 								"header": [],
@@ -548,18 +839,33 @@
 						},
 						{
 							"name": "doctors ok",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 204\", function () { pm.response.to.have.status(204); });\r",
+											"pm.test(\"Body is empty\", function () { pm.expect(pm.response.text()).to.have.length(0); });\r",
+											"pm.test(\"No Content-Type header\", function () { pm.expect(pm.response.headers.has(\"Content-Type\")).to.eql(true); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/patients/1",
+									"raw": "http://localhost:8080/doctors/1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"patients",
+										"doctors",
 										"1"
 									]
 								}
@@ -568,18 +874,33 @@
 						},
 						{
 							"name": "doctors bad id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () { pm.response.to.have.status(400); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has message\", function () { pm.expect(pm.response.json()).to.have.property(\"message\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/patients/abc",
+									"raw": "http://localhost:8080/doctors/abc",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"patients",
+										"doctors",
 										"abc"
 									]
 								}
@@ -588,18 +909,33 @@
 						},
 						{
 							"name": "doctors not found",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () { pm.response.to.have.status(404); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body code is NOT_FOUND\", function () { pm.expect(pm.response.json().code).to.eql(\"NOT_FOUND\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/patients/999",
+									"raw": "http://localhost:8080/doctors/999",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"patients",
+										"doctors",
 										"999"
 									]
 								}
@@ -613,18 +949,33 @@
 					"item": [
 						{
 							"name": "medicines ok",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has id\", function () { pm.expect(pm.response.json()).to.have.property(\"id\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/patients/1",
+									"raw": "http://localhost:8080/medicines/1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"patients",
+										"medicines",
 										"1"
 									]
 								}
@@ -633,18 +984,33 @@
 						},
 						{
 							"name": "medicines bad id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () { pm.response.to.have.status(400); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has message\", function () { pm.expect(pm.response.json()).to.have.property(\"message\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/patients/abc",
+									"raw": "http://localhost:8080/medicines/abc",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"patients",
+										"medicines",
 										"abc"
 									]
 								}
@@ -653,18 +1019,33 @@
 						},
 						{
 							"name": "medicines not found",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () { pm.response.to.have.status(404); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body code is NOT_FOUND\", function () { pm.expect(pm.response.json().code).to.eql(\"NOT_FOUND\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/patients/999",
+									"raw": "http://localhost:8080/medicines/999",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"patients",
+										"medicines",
 										"999"
 									]
 								}
@@ -673,12 +1054,27 @@
 						},
 						{
 							"name": "medicines ok",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () { pm.response.to.have.status(201); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has id\", function () { pm.expect(pm.response.json()).to.have.property(\"id\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"Ana\",\r\n  \"surname\": \"García\",\r\n  \"email\": \"ana@example.com\",\r\n  \"birthDate\": \"1990-03-12\",\r\n  \"active\": true,\r\n  \"weightKg\": 64.5\r\n}",
+									"raw": "{\r\n  \"id\": 100,\r\n  \"name\": \"Ibuprofeno\",\r\n  \"description\": \"Anti-inflammatory\",\r\n  \"category\": \"Analgesic\",\r\n  \"price\": 4.75,\r\n  \"available\": true\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -686,14 +1082,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/patients",
+									"raw": "http://localhost:8080/medicines",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"patients"
+										"medicines"
 									]
 								}
 							},
@@ -701,6 +1097,21 @@
 						},
 						{
 							"name": "medicines bad request",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () { pm.response.to.have.status(400); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has message\", function () { pm.expect(pm.response.json()).to.have.property(\"message\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -729,6 +1140,21 @@
 						},
 						{
 							"name": "medicines duplicate",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 409\", function () { pm.response.to.have.status(409); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body code is CONFLICT\", function () { pm.expect(pm.response.json().code).to.eql(\"CONFLICT\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -757,6 +1183,21 @@
 						},
 						{
 							"name": "medicines ok",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has id\", function () { pm.expect(pm.response.json()).to.have.property(\"id\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "PUT",
 								"header": [],
@@ -770,14 +1211,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/patients/1",
+									"raw": "http://localhost:8080/medicines/1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"patients",
+										"medicines",
 										"1"
 									]
 								}
@@ -791,6 +1232,9 @@
 									"listen": "test",
 									"script": {
 										"exec": [
+											"pm.test(\"Status code is 400\", function () { pm.response.to.have.status(400); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has message\", function () { pm.expect(pm.response.json()).to.have.property(\"message\"); });\r",
 											""
 										],
 										"type": "text/javascript",
@@ -827,18 +1271,33 @@
 						},
 						{
 							"name": "medicines not found",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () { pm.response.to.have.status(404); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body code is NOT_FOUND\", function () { pm.expect(pm.response.json().code).to.eql(\"NOT_FOUND\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "PUT",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/patients/999",
+									"raw": "http://localhost:8080/medicines/999",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"patients",
+										"medicines",
 										"999"
 									]
 								}
@@ -847,18 +1306,33 @@
 						},
 						{
 							"name": "medicines ok",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 204\", function () { pm.response.to.have.status(204); });\r",
+											"pm.test(\"Body is empty\", function () { pm.expect(pm.response.text()).to.have.length(0); });\r",
+											"pm.test(\"No Content-Type header\", function () { pm.expect(pm.response.headers.has(\"Content-Type\")).to.eql(true); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/patients/1",
+									"raw": "http://localhost:8080/medicines/1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"patients",
+										"medicines",
 										"1"
 									]
 								}
@@ -867,18 +1341,33 @@
 						},
 						{
 							"name": "medicines bad id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () { pm.response.to.have.status(400); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has message\", function () { pm.expect(pm.response.json()).to.have.property(\"message\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/patients/abc",
+									"raw": "http://localhost:8080/medicines/abc",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"patients",
+										"medicines",
 										"abc"
 									]
 								}
@@ -887,18 +1376,33 @@
 						},
 						{
 							"name": "medicines not found",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () { pm.response.to.have.status(404); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body code is NOT_FOUND\", function () { pm.expect(pm.response.json().code).to.eql(\"NOT_FOUND\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/patients/999",
+									"raw": "http://localhost:8080/medicines/999",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"patients",
+										"medicines",
 										"999"
 									]
 								}
@@ -912,18 +1416,33 @@
 					"item": [
 						{
 							"name": "appointments ok",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has id\", function () { pm.expect(pm.response.json()).to.have.property(\"id\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/patients/1",
+									"raw": "http://localhost:8080/appointments/1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"patients",
+										"appointments",
 										"1"
 									]
 								}
@@ -932,18 +1451,33 @@
 						},
 						{
 							"name": "appointments bad id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () { pm.response.to.have.status(400); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has message\", function () { pm.expect(pm.response.json()).to.have.property(\"message\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/patients/abc",
+									"raw": "http://localhost:8080/appointments/abc",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"patients",
+										"appointments",
 										"abc"
 									]
 								}
@@ -952,18 +1486,33 @@
 						},
 						{
 							"name": "appointments not found",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () { pm.response.to.have.status(404); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body code is NOT_FOUND\", function () { pm.expect(pm.response.json().code).to.eql(\"NOT_FOUND\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/patients/999",
+									"raw": "http://localhost:8080/appointments/999",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"patients",
+										"appointments",
 										"999"
 									]
 								}
@@ -972,12 +1521,27 @@
 						},
 						{
 							"name": "appointments ok",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () { pm.response.to.have.status(201); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has id\", function () { pm.expect(pm.response.json()).to.have.property(\"id\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"Ana\",\r\n  \"surname\": \"García\",\r\n  \"email\": \"ana@example.com\",\r\n  \"birthDate\": \"1990-03-12\",\r\n  \"active\": true,\r\n  \"weightKg\": 64.5\r\n}",
+									"raw": "{\r\n  \"id\": 200,\r\n  \"date\": \"2025-09-02T09:00:00\",\r\n  \"reason\": \"Checkup\",\r\n  \"confirmed\": true,\r\n  \"cost\": 45.0,\r\n  \"durationMinutes\": 30,\r\n  \"patientId\": 1,\r\n  \"doctorId\": 10\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -985,14 +1549,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/patients",
+									"raw": "http://localhost:8080/appointments",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"patients"
+										"appointments"
 									]
 								}
 							},
@@ -1000,6 +1564,21 @@
 						},
 						{
 							"name": "appointments bad request",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () { pm.response.to.have.status(400); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has message\", function () { pm.expect(pm.response.json()).to.have.property(\"message\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -1028,6 +1607,21 @@
 						},
 						{
 							"name": "appointments duplicate",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 409\", function () { pm.response.to.have.status(409); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body code is CONFLICT\", function () { pm.expect(pm.response.json().code).to.eql(\"CONFLICT\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -1056,6 +1650,21 @@
 						},
 						{
 							"name": "appointments ok",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has id\", function () { pm.expect(pm.response.json()).to.have.property(\"id\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "PUT",
 								"header": [],
@@ -1090,6 +1699,9 @@
 									"listen": "test",
 									"script": {
 										"exec": [
+											"pm.test(\"Status code is 400\", function () { pm.response.to.have.status(400); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has message\", function () { pm.expect(pm.response.json()).to.have.property(\"message\"); });\r",
 											""
 										],
 										"type": "text/javascript",
@@ -1126,6 +1738,21 @@
 						},
 						{
 							"name": "appointments not found",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () { pm.response.to.have.status(404); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body code is NOT_FOUND\", function () { pm.expect(pm.response.json().code).to.eql(\"NOT_FOUND\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "PUT",
 								"header": [],
@@ -1155,18 +1782,33 @@
 						},
 						{
 							"name": "appointments ok",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 204\", function () { pm.response.to.have.status(204); });\r",
+											"pm.test(\"Body is empty\", function () { pm.expect(pm.response.text()).to.have.length(0); });\r",
+											"pm.test(\"No Content-Type header\", function () { pm.expect(pm.response.headers.has(\"Content-Type\")).to.eql(true); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/patients/1",
+									"raw": "http://localhost:8080/appointments/1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"patients",
+										"appointments",
 										"1"
 									]
 								}
@@ -1175,18 +1817,33 @@
 						},
 						{
 							"name": "appointments bad id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () { pm.response.to.have.status(400); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has message\", function () { pm.expect(pm.response.json()).to.have.property(\"message\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/patients/abc",
+									"raw": "http://localhost:8080/appointments/abc",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"patients",
+										"appointments",
 										"abc"
 									]
 								}
@@ -1195,18 +1852,33 @@
 						},
 						{
 							"name": "appointments not found",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () { pm.response.to.have.status(404); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body code is NOT_FOUND\", function () { pm.expect(pm.response.json().code).to.eql(\"NOT_FOUND\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/patients/999",
+									"raw": "http://localhost:8080/appointments/999",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"patients",
+										"appointments",
 										"999"
 									]
 								}
@@ -1220,18 +1892,33 @@
 					"item": [
 						{
 							"name": "prescriptions ok",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has id\", function () { pm.expect(pm.response.json()).to.have.property(\"id\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/patients/1",
+									"raw": "http://localhost:8080/prescriptions/1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"patients",
+										"prescriptions",
 										"1"
 									]
 								}
@@ -1240,18 +1927,33 @@
 						},
 						{
 							"name": "prescriptions bad id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () { pm.response.to.have.status(400); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has message\", function () { pm.expect(pm.response.json()).to.have.property(\"message\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/patients/abc",
+									"raw": "http://localhost:8080/prescriptions/abc",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"patients",
+										"prescriptions",
 										"abc"
 									]
 								}
@@ -1260,18 +1962,33 @@
 						},
 						{
 							"name": "prescriptions not found",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () { pm.response.to.have.status(404); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body code is NOT_FOUND\", function () { pm.expect(pm.response.json().code).to.eql(\"NOT_FOUND\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/patients/999",
+									"raw": "http://localhost:8080/prescriptions/999",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"patients",
+										"prescriptions",
 										"999"
 									]
 								}
@@ -1280,12 +1997,27 @@
 						},
 						{
 							"name": "prescriptions ok",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () { pm.response.to.have.status(201); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has id\", function () { pm.expect(pm.response.json()).to.have.property(\"id\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"id\": 300,\r\n  \"notes\": \"Take after meals\",\r\n  \"active\": true,\r\n  \"durationDays\": 7,\r\n  \"totalCost\": 12.5,\r\n  \"dosageInstructions\": \"1 pill x 8h\",\r\n  \"appointmentId\": 200,\r\n  \"medicineId\": 100\r\n}",
+									"raw": "{\r\n  \"id\": 300,\r\n  \"notes\": \"Take after mealss\",\r\n  \"active\": true,\r\n  \"durationDays\": 7,\r\n  \"totalCost\": 12.5,\r\n  \"dosageInstructions\": \"1 pill x 8h\",\r\n  \"appointmentId\": 200,\r\n  \"medicineId\": 100\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1308,12 +2040,27 @@
 						},
 						{
 							"name": "prescriptions  bad request",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () { pm.response.to.have.status(400); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has message\", function () { pm.expect(pm.response.json()).to.have.property(\"message\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"id\": 1,\r\n  \"surname\": \"García\",\r\n  \"email\": \"ana@example.com\",\r\n  \"birthDate\": \"1990-03-12\",\r\n  \"active\": true,\r\n  \"weightKg\": 64.5\r\n}",
+									"raw": "{\r\n  \"id\": 300,\r\n  \"active\": true,\r\n  \"durationDays\": 7,\r\n  \"totalCost\": 12.5,\r\n  \"dosageInstructions\": \"1 pill x 8h\",\r\n  \"appointmentId\": 200,\r\n  \"medicineId\": 100\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1321,14 +2068,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/patients",
+									"raw": "http://localhost:8080/prescriptions",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"patients"
+										"prescriptions"
 									]
 								}
 							},
@@ -1336,6 +2083,21 @@
 						},
 						{
 							"name": "prescriptions duplicate",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 409\", function () { pm.response.to.have.status(409); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body code is CONFLICT\", function () { pm.expect(pm.response.json().code).to.eql(\"CONFLICT\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -1364,12 +2126,27 @@
 						},
 						{
 							"name": "prescriptions ok",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has id\", function () { pm.expect(pm.response.json()).to.have.property(\"id\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "PUT",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"Ana\",\r\n  \"surname\": \"García\",\r\n  \"email\": \"ana@example.com\",\r\n  \"birthDate\": \"1990-03-12\",\r\n  \"active\": true,\r\n  \"weightKg\": 64.5\r\n}",
+									"raw": "{\r\n  \"id\": 300,\r\n  \"notes\": \"Take after meals - updated\",\r\n  \"active\": true,\r\n  \"durationDays\": 7,\r\n  \"totalCost\": 12.5,\r\n  \"dosageInstructions\": \"1 pill x 8h\",\r\n  \"appointmentId\": 200,\r\n  \"medicineId\": 100\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1377,14 +2154,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/patients/1",
+									"raw": "http://localhost:8080/prescriptions/1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"patients",
+										"prescriptions",
 										"1"
 									]
 								}
@@ -1398,6 +2175,9 @@
 									"listen": "test",
 									"script": {
 										"exec": [
+											"pm.test(\"Status code is 400\", function () { pm.response.to.have.status(400); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has message\", function () { pm.expect(pm.response.json()).to.have.property(\"message\"); });\r",
 											""
 										],
 										"type": "text/javascript",
@@ -1434,6 +2214,21 @@
 						},
 						{
 							"name": "prescriptions not found",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () { pm.response.to.have.status(404); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body code is NOT_FOUND\", function () { pm.expect(pm.response.json().code).to.eql(\"NOT_FOUND\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "PUT",
 								"header": [],
@@ -1463,18 +2258,33 @@
 						},
 						{
 							"name": "prescriptions ok",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 204\", function () { pm.response.to.have.status(204); });\r",
+											"pm.test(\"Body is empty\", function () { pm.expect(pm.response.text()).to.have.length(0); });\r",
+											"pm.test(\"No Content-Type header\", function () { pm.expect(pm.response.headers.has(\"Content-Type\")).to.eql(true); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/patients/1",
+									"raw": "http://localhost:8080/prescriptions/1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"patients",
+										"prescriptions",
 										"1"
 									]
 								}
@@ -1483,18 +2293,33 @@
 						},
 						{
 							"name": "prescriptions bad id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () { pm.response.to.have.status(400); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body has message\", function () { pm.expect(pm.response.json()).to.have.property(\"message\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/patients/abc",
+									"raw": "http://localhost:8080/prescriptions/abc",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"patients",
+										"prescriptions",
 										"abc"
 									]
 								}
@@ -1503,6 +2328,21 @@
 						},
 						{
 							"name": "prescriptions not found",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () { pm.response.to.have.status(404); });\r",
+											"pm.test(\"Content-Type is JSON\", function () { pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\"); });\r",
+											"pm.test(\"Body code is NOT_FOUND\", function () { pm.expect(pm.response.json().code).to.eql(\"NOT_FOUND\"); });\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"method": "DELETE",
 								"header": [],
@@ -1561,7 +2401,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/appointments/jpql/by-doctor-name?name=Nacho",
+							"raw": "http://localhost:8081/appointments/jpql/by-doctor-name?name=Diego",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1575,7 +2415,7 @@
 							"query": [
 								{
 									"key": "name",
-									"value": "Nacho"
+									"value": "Diego"
 								}
 							]
 						}
@@ -1647,7 +2487,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/appointments/native/by-doctor-name?name=Nacho",
+							"raw": "http://localhost:8081/appointments/native/by-doctor-name?name=Diego",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1661,7 +2501,7 @@
 							"query": [
 								{
 									"key": "name",
-									"value": "Nacho"
+									"value": "Diego"
 								}
 							]
 						}
@@ -1696,6 +2536,10 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "prueba APIMan",
+			"item": []
 		},
 		{
 			"name": "/appointments",
@@ -1751,7 +2595,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/patients/6/doctors/6/appointments",
+					"raw": "http://localhost:8081/patients/1/doctors/1/appointments",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -1759,9 +2603,9 @@
 					"port": "8081",
 					"path": [
 						"patients",
-						"6",
+						"1",
 						"doctors",
-						"6",
+						"1",
 						"appointments"
 					]
 				}
@@ -1853,7 +2697,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "  {\r\n    \"name\": \"Diego\",\r\n    \"surname\": \"Lopez\",\r\n    \"licenseNumber\": 200,\r\n    \"specialty\": \"Roturas\",\r\n    \"hiringDate\": \"2025-08-13\",\r\n    \"active\": true\r\n  }",
+					"raw": "  {\r\n    \"name\": \"carlos\",\r\n    \"surname\": \"Lopez\",\r\n    \"licenseNumber\": 200,\r\n    \"specialty\": \"Roturas\",\r\n    \"hiringDate\": \"2025-08-13\",\r\n    \"active\": true\r\n  }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1960,7 +2804,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"name\": \"carlos\",\r\n  \"surname\": \"jimenez\",\r\n  \"email\": \"carlosj@gmail.com\",\r\n  \"birthDate\": \"1999-03-27\",\r\n  \"active\": true,\r\n  \"weightKg\": 73\r\n}",
+					"raw": "{\r\n  \"name\": \"pepe\",\r\n  \"surname\": \"jimenez\",\r\n  \"email\": \"carlosj@gmail.com\",\r\n  \"birthDate\": \"1999-03-27\",\r\n  \"active\": true,\r\n  \"weightKg\": 73\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -2167,8 +3011,17 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"notes\": \"ninguna\",\r\n  \"active\": true,\r\n  \"durationDays\": 5,\r\n  \"totalCost\": 10,\r\n  \"dosageInstructions\": \"cada 8 horas\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:8081/appointments/1/medicines/2/prescriptions",
+					"raw": "http://localhost:8081/appointments/1/medicines/1/prescriptions",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -2178,7 +3031,7 @@
 						"appointments",
 						"1",
 						"medicines",
-						"2",
+						"1",
 						"prescriptions"
 					]
 				}
@@ -2229,7 +3082,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://gateway.local.gd:8080/carlos/hellloapi/1.3/doctors?apikey=5caf35c3-9dee-4874-b83d-c20d96394ae1",
+					"raw": "http://gateway.local.gd:8080/carlos/hellloapi/1.3/doctors?apikey=6dff4bd0-26d4-4983-85e5-77b48183434a",
 					"protocol": "http",
 					"host": [
 						"gateway",
@@ -2246,7 +3099,7 @@
 					"query": [
 						{
 							"key": "apikey",
-							"value": "5caf35c3-9dee-4874-b83d-c20d96394ae1"
+							"value": "6dff4bd0-26d4-4983-85e5-77b48183434a"
 						}
 					]
 				}
@@ -2259,7 +3112,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://gateway.local.gd:8080/carlos/hellloapi/1.3/doctors?apikey=6dff4bd0-26d4-4983-85e5-77b48183434a",
+					"raw": "http://gateway.local.gd:8080/carlos/hellloapi/1.3/patients?apikey=6dff4bd0-26d4-4983-85e5-77b48183434a",
 					"protocol": "http",
 					"host": [
 						"gateway",
@@ -2271,7 +3124,7 @@
 						"carlos",
 						"hellloapi",
 						"1.3",
-						"doctors"
+						"patients"
 					],
 					"query": [
 						{
